@@ -1,0 +1,63 @@
+{
+  "name": "@tsdotnet/parallel",
+  "version": "1.0.0",
+  "description": "",
+  "author": "electricessence",
+  "license": "MIT",
+  "types": "dist/Parallel.d.ts",
+  "main": "dist/Parallel.js",
+  "module": "dist-esm/Parallel.js",
+  "keywords": [],
+  "scripts": {
+    "build:dist": "rimraf dist/* && copyfiles -u 1 src/**/*.d.ts dist && tsc",
+    "build:dist-esm": "rimraf dist-esm/* && tsc -p tsconfig.esm.json",
+    "build": "npm i && run-p build:*",
+    "bump": "npm run precommit && npm version patch",
+    "docs": "rimraf docs/* && rimraf docs/.nojekyll && typedoc --options typedoc.json --readme none",
+    "lint": "eslint src/**/*.ts",
+    "precommit": "npm i && run-p lint test && run-p build:* && npm run validate",
+    "prepublishOnly": "npm run build && run-p validate test",
+    "preversion": "run-p lint test",
+    "postversion": "git push && git push --tags && npm run docs && git commit -m \"Updated docs.\" docs && git push",
+    "test": "mocha -r ts-node/register tests/**/*.ts",
+    "validate": "node ./.build/validate-package.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsdotnet/parallel.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tsdotnet/parallel/issues"
+  },
+  "homepage": "https://github.com/tsdotnet/parallel#readme",
+  "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^14.0.3",
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "@typescript-eslint/parser": "^2.34.0",
+    "chai": "^4.2.0",
+    "copyfiles": "^2.2.0",
+    "eslint": "^7.0.0",
+    "eslint-config-typescript": "^3.0.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "mocha": "^7.1.2",
+    "npm-run-all": "^4.1.5",
+    "nyc": "^15.0.1",
+    "rimraf": "^3.0.2",
+    "ts-node": "^8.10.1",
+    "typedoc": "^0.17.7",
+    "typedoc-plugin-external-module-name": "^3.1.0",
+    "typedoc-plugin-nojekyll": "^1.0.1",
+    "typescript": "^3.9.2"
+  },
+  "dependencies": {
+    "@tsdotnet/object-pool": "^1.0.3",
+    "@tsdotnet/promises": "^1.0.1",
+    "@tsdotnet/stopwatch": "^1.0.1",
+    "@tsdotnet/threading": "^1.0.3",
+    "tslib": "^2.0.0"
+  }
+}

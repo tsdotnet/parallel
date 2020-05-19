@@ -1,0 +1,98 @@
+
+//
+//
+// 	private _spawnReduceWorker<N>(
+// 		data:any,
+// 		cb:(data:N) => N,
+// 		done:(err?:any, wrk?:WorkerLike)=>void,
+// 		env?:any,
+// 		wrk?:WorkerLike)
+// 	{
+// 		const _ = this;
+// 		if(!wrk) wrk = _._spawnWorker(cb, env);
+//
+// 		if(wrk!==VOID0)
+// 		{
+// 			interact(wrk,
+// 				msg=>
+// 				{
+// 					_.data[_.data.length] = msg.data;
+// 					done(null, wrk);
+// 				},
+// 				e=>
+// 				{
+// 					wrk.terminate();
+// 					done(e, null);
+// 				},
+// 				data);
+// 		}
+// 		else if(_.options.allowSynchronous)
+// 		{
+// 			deferImmediate(()=>
+// 			{
+// 				_.data[_.data.length] = cb(data);
+// 				done();
+// 			});
+// 		}
+// 		else
+// 		{
+// 			throw new Error('Workers do not exist and synchronous operation not allowed!');
+// 		}
+// 	}
+//
+//
+//
+//
+// 	reduce<N>(cb:(data:N[]) => N, env?:any):Parallel<T>
+// 	{
+// 		env = extend(this.options.env, env || {});
+//
+// 		var runningWorkers = 0;
+// 		const _ = this;
+//
+//
+// 		_._operation = new Promise<any>((resolve, reject)=>
+// 		{
+//
+// 			const done = (err?:any, wrk?:WorkerLike)=>
+// 			{
+// 				--runningWorkers;
+// 				if(err)
+// 				{
+// 					reject(err);
+// 				}
+// 				else if(_.data.length===1 && runningWorkers===0)
+// 				{
+// 					resolve(_.data = _.data[0]);
+// 					if(wrk) wrk.terminate();
+// 				}
+// 				else if(_.data.length>1)
+// 				{
+// 					++runningWorkers;
+// 					_._spawnReduceWorker([_.data[0], _.data[1]], cb, done, env, wrk);
+// 					_.data.splice(0, 2);
+// 				}
+// 				else
+// 				{
+// 					if(wrk) wrk.terminate();
+// 				}
+// 			};
+//
+// 			if(_.data.length===1)
+// 			{
+// 				resolve(_.data[0]);
+// 			}
+// 			else
+// 			{
+// 				for(var i = 0; i<_.options.maxConcurrency && i<Math.floor(_.data.length/2); ++i)
+// 				{
+// 					++runningWorkers;
+// 					_._spawnReduceWorker([_.data[i*2], _.data[i*2 + 1]], cb, done, env);
+// 				}
+//
+// 				_.data.splice(0, i*2);
+// 			}
+// 		}, true);
+// 		return this;
+//
+// 	}
