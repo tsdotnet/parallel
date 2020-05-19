@@ -108,6 +108,11 @@ export class Parallel {
         this.ensureClampedMaxConcurrency();
     }
     /**
+     * Returns true if paralleling is supported.
+     * @return {boolean}
+     */
+    static get isSupported() { return _supports; }
+    /**
      * Creates a Parallel with the specified max concurrency.
      * @param {number} max
      * @return {Parallel}
@@ -115,23 +120,49 @@ export class Parallel {
     static maxConcurrency(max) {
         return new Parallel({ maxConcurrency: max });
     }
-    _getWorkerSource(task, env) {
-        const scripts = this._requiredScripts, functions = this._requiredFunctions;
-        let preStr = '';
-        if (!isNodeJS && scripts.length) {
-            preStr += 'importScripts("' + scripts.join('","') + '");\r\n';
-        }
-        for (const { name, fn } of functions) {
-            const source = fn.toString();
-            preStr += name
-                ? `var ${name} = ${source};`
-                : source;
-        }
-        env = JSON.stringify(env || {});
-        const ns = this.options.envNamespace;
-        return preStr + (isNodeJS
-            ? `process.on("message", function(e) {global.${ns} = ${env};process.send(JSON.stringify((${task.toString()})(JSON.parse(e).data)))})`
-            : `self.onmessage = function(e) {var global = {}; global.${ns} = ${env};self.postMessage((${task.toString()})(e.data))}`);
+    /**
+     * Returns a Parallel with the specified options.
+     * @param {ParallelOptions} options
+     * @return {Parallel}
+     */
+    static options(options) {
+        return new Parallel(options);
+    }
+    /**
+     * Returns a parallel with the specified prerequisite requirements.
+     * @param {RequireType} required
+     * @return {Parallel}
+     */
+    static require(...required) {
+        return (new Parallel()).requireThese(required);
+    }
+    /**
+     * Returns a parallel with the specified prerequisite requirements.
+     * @param {RequireType} required
+     * @return {Parallel}
+     */
+    static requireThese(required) {
+        return (new Parallel()).requireThese(required);
+    }
+    /**
+     * Starts a new default option (no requirements) Parallel with the specified data and task and resolves a promise when complete.
+     * @param {T} data
+     * @param {(data: T) => U} task
+     * @param env
+     * @return {PromiseBase<U>}
+     */
+    static startNew(data, task, env) {
+        return (new Parallel()).startNew(data, task, env);
+    }
+    /**
+     * Asynchronously resolves an array of results processed through the paralleled task function.
+     * @param {T[]} data
+     * @param {(data: T) => U} task
+     * @param env
+     * @return {ArrayPromise<U>}
+     */
+    static map(data, task, env) {
+        return (new Parallel()).map(data, task, env);
     }
     /**
      * Adds prerequisites (required) for the workers.
@@ -163,34 +194,6 @@ export class Parallel {
             }
         }
         return this;
-    }
-    _spawnWorker(task, env) {
-        const src = this._getWorkerSource(task, env);
-        if (WorkerN === VOID0)
-            return VOID0;
-        let worker = workers.tryGet(src);
-        if (worker)
-            return worker;
-        const scripts = this._requiredScripts;
-        const evalPath = this.options.evalPath;
-        if (!evalPath) {
-            if (isNodeJS)
-                throw new Error('Can\'t use NodeJS without eval.js!');
-            if (scripts.length)
-                throw new Error('Can\'t use required scripts without eval.js!');
-            if (!URL)
-                throw new Error('Can\'t create a blob URL in this browser!');
-        }
-        if (isNodeJS || scripts.length || !URL) {
-            worker = workers.getNew(src, evalPath);
-            worker.postMessage(src);
-        }
-        else if (URL) {
-            const blob = new Blob([src], { type: 'text/javascript' });
-            const url = URL.createObjectURL(blob);
-            worker = workers.getNew(src, url);
-        }
-        return worker;
     }
     /**
      * Schedules the task to be run in the worker pool.
@@ -300,14 +303,6 @@ export class Parallel {
         }
         return new PromiseCollection(result);
     }
-    ensureClampedMaxConcurrency() {
-        let { maxConcurrency } = this.options;
-        if (maxConcurrency && maxConcurrency > MAX_WORKERS) {
-            this.options.maxConcurrency = maxConcurrency = MAX_WORKERS;
-            console.warn(`More than ${MAX_WORKERS} workers can reach worker limits and cause unexpected results.  maxConcurrency reduced to ${MAX_WORKERS}.`);
-        }
-        return (maxConcurrency || maxConcurrency === 0) ? maxConcurrency : MAX_WORKERS;
-    }
     /**
      * Waits for all tasks to resolve and returns a promise with the results.
      * @param data
@@ -374,54 +369,59 @@ export class Parallel {
             }
         });
     }
-    /**
-     * Returns true if paralleling is supported.
-     * @return {boolean}
-     */
-    static get isSupported() { return _supports; }
-    /**
-     * Returns a Parallel with the specified options.
-     * @param {ParallelOptions} options
-     * @return {Parallel}
-     */
-    static options(options) {
-        return new Parallel(options);
+    _getWorkerSource(task, env) {
+        const scripts = this._requiredScripts, functions = this._requiredFunctions;
+        let preStr = '';
+        if (!isNodeJS && scripts.length) {
+            preStr += 'importScripts("' + scripts.join('","') + '");\r\n';
+        }
+        for (const { name, fn } of functions) {
+            const source = fn.toString();
+            preStr += name
+                ? `var ${name} = ${source};`
+                : source;
+        }
+        env = JSON.stringify(env || {});
+        const ns = this.options.envNamespace;
+        return preStr + (isNodeJS
+            ? `process.on("message", function(e) {global.${ns} = ${env};process.send(JSON.stringify((${task.toString()})(JSON.parse(e).data)))})`
+            : `self.onmessage = function(e) {var global = {}; global.${ns} = ${env};self.postMessage((${task.toString()})(e.data))}`);
     }
-    /**
-     * Returns a parallel with the specified prerequisite requirements.
-     * @param {RequireType} required
-     * @return {Parallel}
-     */
-    static require(...required) {
-        return (new Parallel()).requireThese(required);
+    _spawnWorker(task, env) {
+        const src = this._getWorkerSource(task, env);
+        if (WorkerN === VOID0)
+            return VOID0;
+        let worker = workers.tryGet(src);
+        if (worker)
+            return worker;
+        const scripts = this._requiredScripts;
+        const evalPath = this.options.evalPath;
+        if (!evalPath) {
+            if (isNodeJS)
+                throw new Error('Can\'t use NodeJS without eval.js!');
+            if (scripts.length)
+                throw new Error('Can\'t use required scripts without eval.js!');
+            if (!URL)
+                throw new Error('Can\'t create a blob URL in this browser!');
+        }
+        if (isNodeJS || scripts.length || !URL) {
+            worker = workers.getNew(src, evalPath);
+            worker.postMessage(src);
+        }
+        else if (URL) {
+            const blob = new Blob([src], { type: 'text/javascript' });
+            const url = URL.createObjectURL(blob);
+            worker = workers.getNew(src, url);
+        }
+        return worker;
     }
-    /**
-     * Returns a parallel with the specified prerequisite requirements.
-     * @param {RequireType} required
-     * @return {Parallel}
-     */
-    static requireThese(required) {
-        return (new Parallel()).requireThese(required);
-    }
-    /**
-     * Starts a new default option (no requirements) Parallel with the specified data and task and resolves a promise when complete.
-     * @param {T} data
-     * @param {(data: T) => U} task
-     * @param env
-     * @return {PromiseBase<U>}
-     */
-    static startNew(data, task, env) {
-        return (new Parallel()).startNew(data, task, env);
-    }
-    /**
-     * Asynchronously resolves an array of results processed through the paralleled task function.
-     * @param {T[]} data
-     * @param {(data: T) => U} task
-     * @param env
-     * @return {ArrayPromise<U>}
-     */
-    static map(data, task, env) {
-        return (new Parallel()).map(data, task, env);
+    ensureClampedMaxConcurrency() {
+        let { maxConcurrency } = this.options;
+        if (maxConcurrency && maxConcurrency > MAX_WORKERS) {
+            this.options.maxConcurrency = maxConcurrency = MAX_WORKERS;
+            console.warn(`More than ${MAX_WORKERS} workers can reach worker limits and cause unexpected results.  maxConcurrency reduced to ${MAX_WORKERS}.`);
+        }
+        return (maxConcurrency || maxConcurrency === 0) ? maxConcurrency : MAX_WORKERS;
     }
 }
 export default Parallel;

@@ -37,64 +37,16 @@ export declare class Parallel {
     }[];
     constructor(options?: ParallelOptions);
     /**
+     * Returns true if paralleling is supported.
+     * @return {boolean}
+     */
+    static get isSupported(): boolean;
+    /**
      * Creates a Parallel with the specified max concurrency.
      * @param {number} max
      * @return {Parallel}
      */
     static maxConcurrency(max: number): Parallel;
-    protected _getWorkerSource(task: Function | string, env?: any): string;
-    /**
-     * Adds prerequisites (required) for the workers.
-     * @param {RequireType} required URLs (strings) or Functions (serialized).
-     * @return {this}
-     */
-    require(...required: RequireType[]): this;
-    /**
-     * Adds prerequisites (required) for the workers.
-     * @param {RequireType} required URLs (strings) or Functions (serialized).
-     * @return {this}
-     */
-    requireThese(required: RequireType[]): this;
-    protected _spawnWorker(task: Function | string, env?: any): WorkerLike | undefined;
-    /**
-     * Schedules the task to be run in the worker pool.
-     * @param data
-     * @param task
-     * @param env
-     * @returns {TSDNPromise<U>|TSDNPromise}
-     */
-    startNew<T, U>(data: T, task: (data: T) => U, env?: any): TSDNPromise<U>;
-    /**
-     * Runs the task within the local thread/process.
-     * Is good for use with testing.
-     * @param data
-     * @param task
-     * @returns {TSDNPromise<U>|TSDNPromise}
-     */
-    startLocal<T, U>(data: T, task: (data: T) => U): TSDNPromise<U>;
-    /**
-     * Returns an array of promises that each resolve after their task completes.
-     * Provides a potential performance benefit by not waiting for all promises to resolve before proceeding to next step.
-     * @param data
-     * @param task
-     * @param env
-     * @returns {PromiseCollection}
-     */
-    pipe<T, U>(data: T[], task: (data: T) => U, env?: any): PromiseCollection<U>;
-    private ensureClampedMaxConcurrency;
-    /**
-     * Waits for all tasks to resolve and returns a promise with the results.
-     * @param data
-     * @param task
-     * @param env
-     * @returns {ArrayPromise}
-     */
-    map<T, U>(data: T[], task: (data: T) => U, env?: any): ArrayPromise<U>;
-    /**
-     * Returns true if paralleling is supported.
-     * @return {boolean}
-     */
-    static get isSupported(): boolean;
     /**
      * Returns a Parallel with the specified options.
      * @param {ParallelOptions} options
@@ -129,5 +81,53 @@ export declare class Parallel {
      * @return {ArrayPromise<U>}
      */
     static map<T, U>(data: T[], task: (data: T) => U, env?: any): ArrayPromise<U>;
+    /**
+     * Adds prerequisites (required) for the workers.
+     * @param {RequireType} required URLs (strings) or Functions (serialized).
+     * @return {this}
+     */
+    require(...required: RequireType[]): this;
+    /**
+     * Adds prerequisites (required) for the workers.
+     * @param {RequireType} required URLs (strings) or Functions (serialized).
+     * @return {this}
+     */
+    requireThese(required: RequireType[]): this;
+    /**
+     * Schedules the task to be run in the worker pool.
+     * @param data
+     * @param task
+     * @param env
+     * @returns {TSDNPromise<U>|TSDNPromise}
+     */
+    startNew<T, U>(data: T, task: (data: T) => U, env?: any): TSDNPromise<U>;
+    /**
+     * Runs the task within the local thread/process.
+     * Is good for use with testing.
+     * @param data
+     * @param task
+     * @returns {TSDNPromise<U>|TSDNPromise}
+     */
+    startLocal<T, U>(data: T, task: (data: T) => U): TSDNPromise<U>;
+    /**
+     * Returns an array of promises that each resolve after their task completes.
+     * Provides a potential performance benefit by not waiting for all promises to resolve before proceeding to next step.
+     * @param data
+     * @param task
+     * @param env
+     * @returns {PromiseCollection}
+     */
+    pipe<T, U>(data: T[], task: (data: T) => U, env?: any): PromiseCollection<U>;
+    /**
+     * Waits for all tasks to resolve and returns a promise with the results.
+     * @param data
+     * @param task
+     * @param env
+     * @returns {ArrayPromise}
+     */
+    map<T, U>(data: T[], task: (data: T) => U, env?: any): ArrayPromise<U>;
+    protected _getWorkerSource(task: Function | string, env?: any): string;
+    protected _spawnWorker(task: Function | string, env?: any): WorkerLike | undefined;
+    private ensureClampedMaxConcurrency;
 }
 export default Parallel;
