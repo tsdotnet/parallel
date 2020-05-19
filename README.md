@@ -4,11 +4,11 @@
 ![npm-publish](https://github.com/tsdotnet/parallel/workflows/npm-publish/badge.svg)
 [![npm version](https://img.shields.io/npm/v/@tsdotnet/parallel.svg?style=flat-square)](https://www.npmjs.com/package/@tsdotnet/parallel)
 
-
+A utility for automatically partitioning tasks (promises) and executing them in parallel using separate processes or web workers.
 
 ## Docs
 
-[tsdotnet.github.io/parallel](https://tsdotnet.github.io/parallel/)
+[tsdotnet.github.io/parallel](https://tsdotnet.github.io/parallel/modules/_parallel_.html)
 
 ## Demo
 

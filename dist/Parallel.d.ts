@@ -29,9 +29,9 @@ export declare type RequireType = string | Function | {
     fn: Function;
 };
 export declare class Parallel {
-    options: ParallelOptions;
-    _requiredScripts: string[];
-    _requiredFunctions: {
+    readonly options: ParallelOptions;
+    protected readonly _requiredScripts: string[];
+    protected readonly _requiredFunctions: {
         name?: string;
         fn: Function;
     }[];

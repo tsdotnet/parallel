@@ -172,10 +172,9 @@ namespace workers
 
 export class Parallel
 {
-
-	options: ParallelOptions;
-	_requiredScripts: string[];
-	_requiredFunctions: { name?: string; fn: Function }[];
+	readonly options: ParallelOptions;
+	protected readonly _requiredScripts: string[];
+	protected readonly _requiredFunctions: { name?: string; fn: Function }[];
 
 	constructor (options?: ParallelOptions)
 	{
