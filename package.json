@@ -60,9 +60,9 @@
   },
   "dependencies": {
     "@tsdotnet/object-pool": "^1.0.3",
-    "@tsdotnet/promises": "^1.0.3",
-    "@tsdotnet/stopwatch": "^1.0.4",
-    "@tsdotnet/threading": "^1.0.7",
+    "@tsdotnet/promises": "^1.0.4",
+    "@tsdotnet/stopwatch": "^1.0.5",
+    "@tsdotnet/threading": "^1.0.8",
     "tslib": "^2.0.0"
   }
 }
