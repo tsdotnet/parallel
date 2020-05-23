@@ -30,7 +30,6 @@ function extend(from, to) {
     if (!to)
         to = {};
     for (const key of Object.keys(from)) {
-        // @ts-ignore
         if (to[key] === VOID0)
             to[key] = from[key];
     }

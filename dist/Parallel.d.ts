@@ -72,7 +72,7 @@ export declare class Parallel {
      * @param env
      * @return {PromiseBase<U>}
      */
-    static startNew<T, U>(data: T, task: (data: T) => U, env?: any): PromiseBase<U>;
+    static startNew<T, U>(data: T, task: (data: T) => U, env?: unknown): PromiseBase<U>;
     /**
      * Asynchronously resolves an array of results processed through the paralleled task function.
      * @param {T[]} data
@@ -80,7 +80,7 @@ export declare class Parallel {
      * @param env
      * @return {ArrayPromise<U>}
      */
-    static map<T, U>(data: T[], task: (data: T) => U, env?: any): ArrayPromise<U>;
+    static map<T, U>(data: T[], task: (data: T) => U, env?: unknown): ArrayPromise<U>;
     /**
      * Adds prerequisites (required) for the workers.
      * @param {RequireType} required URLs (strings) or Functions (serialized).
@@ -100,7 +100,7 @@ export declare class Parallel {
      * @param env
      * @returns {TSDNPromise<U>|TSDNPromise}
      */
-    startNew<T, U>(data: T, task: (data: T) => U, env?: any): TSDNPromise<U>;
+    startNew<T, U>(data: T, task: (data: T) => U, env?: unknown): TSDNPromise<U>;
     /**
      * Runs the task within the local thread/process.
      * Is good for use with testing.
@@ -117,7 +117,7 @@ export declare class Parallel {
      * @param env
      * @returns {PromiseCollection}
      */
-    pipe<T, U>(data: T[], task: (data: T) => U, env?: any): PromiseCollection<U>;
+    pipe<T, U>(data: T[], task: (data: T) => U, env?: unknown): PromiseCollection<U>;
     /**
      * Waits for all tasks to resolve and returns a promise with the results.
      * @param data
@@ -125,9 +125,9 @@ export declare class Parallel {
      * @param env
      * @returns {ArrayPromise}
      */
-    map<T, U>(data: T[], task: (data: T) => U, env?: any): ArrayPromise<U>;
-    protected _getWorkerSource(task: Function | string, env?: any): string;
-    protected _spawnWorker(task: Function | string, env?: any): WorkerLike | undefined;
+    map<T, U>(data: T[], task: (data: T) => U, env?: unknown): ArrayPromise<U>;
+    protected _getWorkerSource(task: Function | string, env?: unknown): string;
+    protected _spawnWorker(task: Function | string, env?: unknown): WorkerLike | undefined;
     private ensureClampedMaxConcurrency;
 }
 export default Parallel;

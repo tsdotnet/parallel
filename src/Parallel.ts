@@ -11,7 +11,7 @@ import {isNodeJS} from '@tsdotnet/threading/dist/environment';
 import WorkerN from '@tsdotnet/threading/dist/Worker';
 import {WorkerLike} from '@tsdotnet/threading/dist/WorkerLike';
 
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/explicit-function-return-type, @typescript-eslint/ban-types */
 
 declare const navigator: any;
 declare const __dirname: string;
@@ -66,8 +66,7 @@ function extend<TFrom extends Lookup<any>, TTo extends Lookup<any>> (
 	if(!to) to = {} as any;
 	for(const key of Object.keys(from))
 	{
-		// @ts-ignore
-		if(to[key]===VOID0) to[key] = from[key];
+		if(to![key]===VOID0) (to as any)[key] = from[key];
 	}
 	return to as any;
 }
@@ -239,7 +238,7 @@ export class Parallel
 	 * @param env
 	 * @return {PromiseBase<U>}
 	 */
-	static startNew<T, U> (data: T, task: (data: T) => U, env?: any): PromiseBase<U>
+	static startNew<T, U> (data: T, task: (data: T) => U, env?: unknown): PromiseBase<U>
 	{
 		return (new Parallel()).startNew(data, task, env);
 	}
@@ -251,7 +250,7 @@ export class Parallel
 	 * @param env
 	 * @return {ArrayPromise<U>}
 	 */
-	static map<T, U> (data: T[], task: (data: T) => U, env?: any): ArrayPromise<U>
+	static map<T, U> (data: T[], task: (data: T) => U, env?: unknown): ArrayPromise<U>
 	{
 		return (new Parallel()).map(data, task, env);
 	}
@@ -301,13 +300,13 @@ export class Parallel
 	 * @param env
 	 * @returns {TSDNPromise<U>|TSDNPromise}
 	 */
-	startNew<T, U> (data: T, task: (data: T) => U, env?: any): TSDNPromise<U>
+	startNew<T, U> (data: T, task: (data: T) => U, env?: unknown): TSDNPromise<U>
 	{
 		const _ = this;
 		const maxConcurrency = this.ensureClampedMaxConcurrency();
 
 		const worker = maxConcurrency
-			? _._spawnWorker(task, extend(_.options.env, env || {}))
+			? _._spawnWorker(task, extend(_.options.env, env as any || {}))
 			: null;
 		if(worker)
 		{
@@ -353,7 +352,7 @@ export class Parallel
 	 * @param env
 	 * @returns {PromiseCollection}
 	 */
-	pipe<T, U> (data: T[], task: (data: T) => U, env?: any): PromiseCollection<U>
+	pipe<T, U> (data: T[], task: (data: T) => U, env?: unknown): PromiseCollection<U>
 	{
 
 		// The resultant promise collection will make an internal copy...
@@ -443,7 +442,7 @@ export class Parallel
 	 * @param env
 	 * @returns {ArrayPromise}
 	 */
-	map<T, U> (data: T[], task: (data: T) => U, env?: any): ArrayPromise<U>
+	map<T, U> (data: T[], task: (data: T) => U, env?: unknown): ArrayPromise<U>
 	{
 		if(!data || !data.length)
 			return ArrayPromise.fulfilled<U>([]);
@@ -521,7 +520,7 @@ export class Parallel
 
 	}
 
-	protected _getWorkerSource (task: Function | string, env?: any): string
+	protected _getWorkerSource (task: Function | string, env?: unknown): string
 	{
 		const scripts = this._requiredScripts, functions = this._requiredFunctions;
 		let preStr = '';
@@ -551,7 +550,7 @@ export class Parallel
 		);
 	}
 
-	protected _spawnWorker (task: Function | string, env?: any): WorkerLike | undefined
+	protected _spawnWorker (task: Function | string, env?: unknown): WorkerLike | undefined
 	{
 		const src = this._getWorkerSource(task, env);
 
