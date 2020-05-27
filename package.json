@@ -1,6 +1,6 @@
 {
   "name": "@tsdotnet/parallel",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "A utility for automatically partitioning tasks (promises) and executing them in parallel using separate processes or web workers.",
   "author": "electricessence",
   "license": "MIT",
