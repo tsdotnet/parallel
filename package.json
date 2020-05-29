@@ -59,11 +59,11 @@
     "typescript": "^3.9.3"
   },
   "dependencies": {
-    "@tsdotnet/disposable": "^1.1.19",
-    "@tsdotnet/object-pool": "^1.0.5",
+    "@tsdotnet/disposable": "^1.1.20",
+    "@tsdotnet/object-pool": "^1.0.6",
     "@tsdotnet/promises": "^1.0.8",
-    "@tsdotnet/stopwatch": "^1.0.7",
-    "@tsdotnet/threading": "^1.0.12",
+    "@tsdotnet/stopwatch": "^1.0.8",
+    "@tsdotnet/threading": "^1.0.13",
     "tslib": "^2.0.0"
   }
 }
