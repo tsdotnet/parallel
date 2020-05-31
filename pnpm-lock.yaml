@@ -1,14 +1,14 @@
 dependencies:
   '@tsdotnet/disposable': 1.1.20
   '@tsdotnet/object-pool': 1.0.6
-  '@tsdotnet/promises': 1.0.8
+  '@tsdotnet/promises': 1.0.9
   '@tsdotnet/stopwatch': 1.0.8
   '@tsdotnet/threading': 1.0.13
   tslib: 2.0.0
 devDependencies:
   '@types/chai': 4.2.11
   '@types/mocha': 7.0.2
-  '@types/node': 14.0.5
+  '@types/node': 14.0.6
   '@typescript-eslint/eslint-plugin': 3.0.2_6305112a4dd05588288c08258cda3068
   '@typescript-eslint/parser': 3.0.2_eslint@7.1.0+typescript@3.9.3
   chai: 4.2.0
@@ -24,7 +24,7 @@ devDependencies:
   rimraf: 3.0.2
   ts-node: 8.10.2_typescript@3.9.3
   typedoc: 0.17.7_typescript@3.9.3
-  typedoc-plugin-external-module-name: 3.1.0_typedoc@0.17.7
+  typedoc-plugin-external-module-name: 4.0.0_typedoc@0.17.7
   typedoc-plugin-nojekyll: 1.0.1_typedoc@0.17.7
   typescript: 3.9.3
 lockfileVersion: 5.1
@@ -239,12 +239,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-4ldokIW6W9HFMluL8Cwcakw7HNhNLjsSAjkigOTTICFDqtVzJwjVAoLus1turSFOb4J+HgH8sHAvGh4Z/ZgCEQ==
-  /@tsdotnet/disposable/1.1.19:
-    dependencies:
-      tslib: 2.0.0
-    dev: false
-    resolution:
-      integrity: sha512-2DGtUvkiR1/h2mmES97BLb2zBgRaYQbUnk/YcYG5rmdKjHgZVKcPwd+exMZTxY5mLi4mQCbsS/BmSxEKqg2Uag==
   /@tsdotnet/disposable/1.1.20:
     dependencies:
       tslib: 2.0.0
@@ -257,13 +251,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-uJwSxVgTVmNOSvit1TFLgFass/VGEyEDRx8zvgtC3YaAj/KCQi1wE/uchBIFaXCWYSmOELHZjDZRv4zYguVqTQ==
-  /@tsdotnet/lazy/1.0.19:
-    dependencies:
-      '@tsdotnet/disposable': 1.1.19
-      tslib: 2.0.0
-    dev: false
-    resolution:
-      integrity: sha512-755p0CDhfwnBViO8i7SOp6vbflZ9ip4B8ULRGz6ucx1O7OIF5FFOA3Yrz4/zYCJw1mewfBkhM1cCk1ByQlGBEw==
   /@tsdotnet/lazy/1.0.20:
     dependencies:
       '@tsdotnet/disposable': 1.1.20
@@ -280,14 +267,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-KBJhR1hstJnNXi4AwNuRUs6XhjNbUfOVk+ZL7lH+/XkctNO8i+7Wfch/XGFmdmBsPpFrR427Cqv0lRW5WUUV/w==
-  /@tsdotnet/object-pool/1.0.5:
-    dependencies:
-      '@tsdotnet/disposable': 1.1.19
-      '@tsdotnet/exceptions': 1.0.16
-      tslib: 2.0.0
-    dev: false
-    resolution:
-      integrity: sha512-PT9KjQh1AmOW60np6O0/OvngxRblKw/pEZSkbhLeGa0aixqIMYlt+NF9y4wvvh9+bIjvyZ2ngDMEsAWRkrvpbQ==
   /@tsdotnet/object-pool/1.0.6:
     dependencies:
       '@tsdotnet/disposable': 1.1.20
@@ -296,18 +275,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-qJ4WrGSxSqT7Wmq2MH3TyhJ2ANM8E51Jzy1bEvN/57856l41qqaB8c47G8aO8UJla6VGCwK725WLy03YReIeFg==
-  /@tsdotnet/observable-base/1.0.14:
-    dependencies:
-      '@tsdotnet/collection-base': 2.0.6
-      '@tsdotnet/common-interfaces': 1.0.4
-      '@tsdotnet/disposable': 1.1.19
-      '@tsdotnet/exceptions': 1.0.16
-      '@tsdotnet/linked-node-list': 1.3.13
-      '@tsdotnet/ordered-registry': 1.0.16
-      tslib: 2.0.0
-    dev: false
-    resolution:
-      integrity: sha512-I1dK/3IgAayrxa1cbLHq68eITRuwOs7mmbEdaZfzaCRUGDEcJLXdgo4v/VuePWvcRkImqQYaoh2kkQoMWixYjQ==
   /@tsdotnet/observable-base/1.0.15:
     dependencies:
       '@tsdotnet/collection-base': 2.0.6
@@ -331,19 +298,19 @@ packages:
     dev: false
     resolution:
       integrity: sha512-Or5S6kyJWS3MpWyFgn2uyE5ZNcVCJ49UIGipnzvNn0KG2k+tfx2LrWCDG1R6LIpi1vqTb1LQDqtm99FB5AQbkw==
-  /@tsdotnet/promises/1.0.8:
+  /@tsdotnet/promises/1.0.9:
     dependencies:
       '@tsdotnet/common-interfaces': 1.0.4
       '@tsdotnet/compare': 1.3.13
-      '@tsdotnet/disposable': 1.1.19
+      '@tsdotnet/disposable': 1.1.20
       '@tsdotnet/exceptions': 1.0.16
-      '@tsdotnet/object-pool': 1.0.5
-      '@tsdotnet/threading': 1.0.12
+      '@tsdotnet/object-pool': 1.0.6
+      '@tsdotnet/threading': 1.0.13
       '@tsdotnet/type': 1.0.8
       tslib: 2.0.0
     dev: false
     resolution:
-      integrity: sha512-yNUKjJQNFqON0gzqNFwRL0hyaREwl1Buy1Era/HoBwLQUHka+kCpkDVMz87ALhjy6l5jEh9bTzLmPegPf1exow==
+      integrity: sha512-UX2xo5nFOMSX5AWfcXGqDPtWBSLHMx7yl5RxQehkjMC5AQTbIu1sGRHBxlFyoJMD3YzH/IXWrmqk36GIAqto7A==
   /@tsdotnet/queue/1.2.2:
     dependencies:
       '@tsdotnet/collection-base': 2.0.6
@@ -359,20 +326,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-pH9migKHtL4VYFk6ISP5tfH+pT7wITKDQgbbsiEhbLawmb2roCXHa8D1Zju2qbMCAWiBkKufiSGsRMlfEDGMSQ==
-  /@tsdotnet/threading/1.0.12:
-    dependencies:
-      '@tsdotnet/common-interfaces': 1.0.4
-      '@tsdotnet/disposable': 1.1.19
-      '@tsdotnet/exceptions': 1.0.16
-      '@tsdotnet/lazy': 1.0.19
-      '@tsdotnet/linked-node-list': 1.3.13
-      '@tsdotnet/object-pool': 1.0.5
-      '@tsdotnet/observable-base': 1.0.14
-      '@tsdotnet/queue': 1.2.2
-      tslib: 2.0.0
-    dev: false
-    resolution:
-      integrity: sha512-JLPTUIFUXssA9e/TDFcq6BcYPqMyHJdlH9U+JsXEHd9FpKnA0DPN9kzXL9XbDZNfhLumcVbk/UFjs/WaNX+ukA==
   /@tsdotnet/threading/1.0.13:
     dependencies:
       '@tsdotnet/common-interfaces': 1.0.4
@@ -414,10 +367,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-ZvO2tAcjmMi8V/5Z3JsyofMe3hasRcaw88cto5etSVMwVQfeivGAlEYmaQgceUSVYFofVjT+ioHsATjdWcFt1w==
-  /@types/node/14.0.5:
+  /@types/node/14.0.6:
     dev: true
     resolution:
-      integrity: sha512-90hiq6/VqtQgX8Sp0EzeIsv3r+ellbGj4URKj5j30tLlZvRUpnAe9YbYnjl3pJM93GyXU0tghHhvXHq+5rnCKA==
+      integrity: sha512-FbNmu4F67d3oZMWBV6Y4MaPER+0EpE9eIYf2yaHhCWovc1dlXCZkqGX4NLHfVVr6umt20TNBdRzrNJIzIKfdbw==
   /@typescript-eslint/eslint-plugin/3.0.2_6305112a4dd05588288c08258cda3068:
     dependencies:
       '@typescript-eslint/experimental-utils': 3.0.2_eslint@7.1.0+typescript@3.9.3
@@ -2972,7 +2925,7 @@ packages:
       node: '>= 8'
     resolution:
       integrity: sha512-SuqAQI0CkwhqSJ2kaVTgl37cWs733uy9UGUqwtcds8pkFK8oRF4rZmCq+FXTGIb9hIUOu40rf5Kojg0Ha6akeg==
-  /typedoc-plugin-external-module-name/3.1.0_typedoc@0.17.7:
+  /typedoc-plugin-external-module-name/4.0.0_typedoc@0.17.7:
     dependencies:
       lodash: 4.17.15
       semver: 7.3.2
@@ -2981,7 +2934,7 @@ packages:
     peerDependencies:
       typedoc: '>=0.7.0 <0.18.0'
     resolution:
-      integrity: sha512-7Jym2cOkSbMtXRb2C9RytIihryB/a7UZZbCWeIZ+PoSxglOwiHqTAPWWVN2AbVKh3iKy8PpGRCYggfDnpb177g==
+      integrity: sha512-S/j6ctXxIsecxA0+NNCaD7C9Z3XrmuwEMW890pen6+zt4uyyYSokt7xB+NfOV48O+JzAgx9y7WwWadJ5vrzdew==
   /typedoc-plugin-nojekyll/1.0.1_typedoc@0.17.7:
     dependencies:
       fs-extra: 6.0.1
@@ -3216,12 +3169,12 @@ packages:
 specifiers:
   '@tsdotnet/disposable': ^1.1.20
   '@tsdotnet/object-pool': ^1.0.6
-  '@tsdotnet/promises': ^1.0.8
+  '@tsdotnet/promises': ^1.0.9
   '@tsdotnet/stopwatch': ^1.0.8
   '@tsdotnet/threading': ^1.0.13
   '@types/chai': ^4.2.11
   '@types/mocha': ^7.0.2
-  '@types/node': ^14.0.5
+  '@types/node': ^14.0.6
   '@typescript-eslint/eslint-plugin': ^3.0.2
   '@typescript-eslint/parser': ^3.0.2
   chai: ^4.2.0
@@ -3238,6 +3191,6 @@ specifiers:
   ts-node: ^8.10.2
   tslib: ^2.0.0
   typedoc: ^0.17.7
-  typedoc-plugin-external-module-name: ^3.1.0
+  typedoc-plugin-external-module-name: ^4.0.0
   typedoc-plugin-nojekyll: ^1.0.1
   typescript: ^3.9.3
