@@ -61,7 +61,7 @@
   "dependencies": {
     "@tsdotnet/disposable": "^1.1.20",
     "@tsdotnet/object-pool": "^1.0.6",
-    "@tsdotnet/promises": "^1.0.8",
+    "@tsdotnet/promises": "^1.0.9",
     "@tsdotnet/stopwatch": "^1.0.8",
     "@tsdotnet/threading": "^1.0.13",
     "tslib": "^2.0.0"
