@@ -20,6 +20,7 @@ const MAX_WORKERS = 16, VOID0 = void 0, URL = typeof self !== 'undefined'
 const defaults = {
     evalPath: environment_1.isNodeJS ? __dirname + '/eval.js' : VOID0,
     maxConcurrency: environment_1.isNodeJS
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
         ? require('os').cpus().length
         : (navigator.hardwareConcurrency || 4),
     allowSynchronous: true,
