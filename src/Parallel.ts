@@ -50,6 +50,7 @@ export interface ParallelOptions
 const defaults: ParallelOptions = {
 	evalPath: isNodeJS ? __dirname + '/eval.js' : VOID0,
 	maxConcurrency: isNodeJS
+		// eslint-disable-next-line @typescript-eslint/no-var-requires
 		? require('os').cpus().length
 		: (navigator.hardwareConcurrency || 4),
 	allowSynchronous: true,
