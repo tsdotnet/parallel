@@ -8,7 +8,7 @@ dependencies:
 devDependencies:
   '@types/chai': 4.2.11
   '@types/mocha': 7.0.2
-  '@types/node': 14.0.10
+  '@types/node': 14.0.11
   '@typescript-eslint/eslint-plugin': 3.1.0_90ac27b2fe1971cc84dccdcfd6d78c87
   '@typescript-eslint/parser': 3.1.0_eslint@7.1.0+typescript@3.9.5
   chai: 4.2.0
@@ -24,7 +24,7 @@ devDependencies:
   rimraf: 3.0.2
   ts-node: 8.10.2_typescript@3.9.5
   typedoc: 0.17.7_typescript@3.9.5
-  typedoc-plugin-external-module-name: 4.0.0_typedoc@0.17.7
+  typedoc-plugin-external-module-name: 3.1.0_typedoc@0.17.7
   typedoc-plugin-nojekyll: 1.0.1_typedoc@0.17.7
   typescript: 3.9.5
 lockfileVersion: 5.1
@@ -367,10 +367,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-ZvO2tAcjmMi8V/5Z3JsyofMe3hasRcaw88cto5etSVMwVQfeivGAlEYmaQgceUSVYFofVjT+ioHsATjdWcFt1w==
-  /@types/node/14.0.10:
+  /@types/node/14.0.11:
     dev: true
     resolution:
-      integrity: sha512-Bz23oN/5bi0rniKT24ExLf4cK0JdvN3dH/3k0whYkdN4eI4vS2ZW/2ENNn2uxHCzWcbdHIa/GRuWQytfzCjRYw==
+      integrity: sha512-lCvvI24L21ZVeIiyIUHZ5Oflv1hhHQ5E1S25IRlKIXaRkVgmXpJMI3wUJkmym2bTbCe+WoIibQnMVAU3FguaOg==
   /@typescript-eslint/eslint-plugin/3.1.0_90ac27b2fe1971cc84dccdcfd6d78c87:
     dependencies:
       '@typescript-eslint/experimental-utils': 3.1.0_eslint@7.1.0+typescript@3.9.5
@@ -2926,7 +2926,7 @@ packages:
       node: '>= 8'
     resolution:
       integrity: sha512-SuqAQI0CkwhqSJ2kaVTgl37cWs733uy9UGUqwtcds8pkFK8oRF4rZmCq+FXTGIb9hIUOu40rf5Kojg0Ha6akeg==
-  /typedoc-plugin-external-module-name/4.0.0_typedoc@0.17.7:
+  /typedoc-plugin-external-module-name/3.1.0_typedoc@0.17.7:
     dependencies:
       lodash: 4.17.15
       semver: 7.3.2
@@ -2935,7 +2935,7 @@ packages:
     peerDependencies:
       typedoc: '>=0.7.0 <0.18.0'
     resolution:
-      integrity: sha512-S/j6ctXxIsecxA0+NNCaD7C9Z3XrmuwEMW890pen6+zt4uyyYSokt7xB+NfOV48O+JzAgx9y7WwWadJ5vrzdew==
+      integrity: sha512-7Jym2cOkSbMtXRb2C9RytIihryB/a7UZZbCWeIZ+PoSxglOwiHqTAPWWVN2AbVKh3iKy8PpGRCYggfDnpb177g==
   /typedoc-plugin-nojekyll/1.0.1_typedoc@0.17.7:
     dependencies:
       fs-extra: 6.0.1
@@ -3175,7 +3175,7 @@ specifiers:
   '@tsdotnet/threading': ^1.0.13
   '@types/chai': ^4.2.11
   '@types/mocha': ^7.0.2
-  '@types/node': ^14.0.10
+  '@types/node': ^14.0.11
   '@typescript-eslint/eslint-plugin': ^3.1.0
   '@typescript-eslint/parser': ^3.1.0
   chai: ^4.2.0
@@ -3192,6 +3192,6 @@ specifiers:
   ts-node: ^8.10.2
   tslib: ^2.0.0
   typedoc: ^0.17.7
-  typedoc-plugin-external-module-name: ^4.0.0
+  typedoc-plugin-external-module-name: 3.1.0
   typedoc-plugin-nojekyll: ^1.0.1
   typescript: ^3.9.5
