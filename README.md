@@ -8,7 +8,7 @@ A utility for automatically partitioning tasks (promises) and executing them in 
 
 ## Docs
 
-[tsdotnet.github.io/parallel](https://tsdotnet.github.io/parallel/modules/_parallel_.html)
+[tsdotnet.github.io/parallel](https://tsdotnet.github.io/parallel/modules/parallel.html)
 
 ## Demo
 

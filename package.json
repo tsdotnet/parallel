@@ -14,7 +14,7 @@
     "parallel"
   ],
   "scripts": {
-    "build:dist": "rimraf dist/* && copyfiles -u 1 src/**/*.d.ts dist && tsc",
+    "build:dist": "rimraf dist/* && tsc && copyfiles -u 1 src/**/*.d.ts dist",
     "build:dist-esm": "rimraf dist-esm/* && tsc -p tsconfig.esm.json",
     "build": "pnpm i && run-p build:*",
     "bump": "npm run precommit && npm version patch",
@@ -54,16 +54,15 @@
     "rimraf": "^3.0.2",
     "ts-node": "^9.1.1",
     "typedoc": "^0.20.35",
-    "typedoc-plugin-external-module-name": "3.1.0",
     "typedoc-plugin-nojekyll": "^1.0.1",
     "typescript": "^4.2.4"
   },
   "dependencies": {
-    "@tsdotnet/disposable": "^1.1.20",
-    "@tsdotnet/object-pool": "^1.0.6",
-    "@tsdotnet/promises": "^1.0.9",
-    "@tsdotnet/stopwatch": "^1.0.8",
-    "@tsdotnet/threading": "^1.0.13",
-    "tslib": "^2.0.0"
+    "@tsdotnet/disposable": "^1.1.22",
+    "@tsdotnet/object-pool": "^1.0.7",
+    "@tsdotnet/promises": "^1.0.10",
+    "@tsdotnet/stopwatch": "^1.0.9",
+    "@tsdotnet/threading": "^1.0.14",
+    "tslib": "^2.2.0"
   }
 }
