@@ -2,8 +2,8 @@ dependencies:
   '@tsdotnet/disposable': 1.1.22
   '@tsdotnet/object-pool': 1.0.7
   '@tsdotnet/promises': 1.0.10
-  '@tsdotnet/stopwatch': 1.0.9
-  '@tsdotnet/threading': 1.0.14
+  '@tsdotnet/stopwatch': 1.0.10
+  '@tsdotnet/threading': 1.0.15
   tslib: 2.2.0
 devDependencies:
   '@types/chai': 4.2.16
@@ -274,6 +274,15 @@ packages:
     dev: false
     resolution:
       integrity: sha512-o0B4wnHW/4C+ssY9NjdrfiMwtmfjBUGS2ga01S1h3PWsIRve+lyKsjNMr7W06aPVed7U6AJ9rW6pp9ybF1qqQQ==
+  /@tsdotnet/collection-base/2.0.9:
+    dependencies:
+      '@tsdotnet/common-interfaces': 1.0.4
+      '@tsdotnet/compare': 1.3.17
+      '@tsdotnet/exceptions': 1.0.17
+      tslib: 2.2.0
+    dev: false
+    resolution:
+      integrity: sha512-FgEA01iaFgKYRuV/6tFEwfzTgNxsALZ51z930C4Ha+MdDomJ8xkZgwZmGiKothxmUq6cxIO+1FlZo4ohdqAbFQ==
   /@tsdotnet/common-interfaces/1.0.4:
     dev: false
     resolution:
@@ -286,16 +295,24 @@ packages:
     dev: false
     resolution:
       integrity: sha512-5bQnk4CKjmLPooJtpqFV+2Z09aRR/G9FlHuLcHlLZ2Cwji+LEqY10z90sE4A2htKHZsqjf/Rz8RfYcOjMA3Ssw==
-  /@tsdotnet/date-time/1.0.22:
+  /@tsdotnet/compare/1.3.17:
     dependencies:
-      '@tsdotnet/compare': 1.3.16
+      '@tsdotnet/common-interfaces': 1.0.4
+      '@tsdotnet/type': 1.0.11
+      tslib: 2.2.0
+    dev: false
+    resolution:
+      integrity: sha512-w1pEejE3nl4B80cDHh9l5gaQAoViPr6n/Hhbd5gJK1zfxUfR3DtldJbFG7W4YE4tE/cjMy4586m0rfWJ3f7Xog==
+  /@tsdotnet/date-time/1.0.23:
+    dependencies:
+      '@tsdotnet/compare': 1.3.17
       '@tsdotnet/exceptions': 1.0.17
       '@tsdotnet/lazy': 1.0.22
       '@tsdotnet/type': 1.0.11
       tslib: 2.2.0
     dev: false
     resolution:
-      integrity: sha512-avJuwN0RgYfest3WOtGj3BS1HattxppSp8YdDKztGXU3Ug7OlkedGGI8gUg4wbT7TA+Ea3ScBbCGuglyaWtRtw==
+      integrity: sha512-8v7G2RpSae0kapFaZjj26XKrQin9Kp31aUv2ouhajRIg31qPhI9wx0oyKht6+5SDnGLR1u3X1QrFUpS5Hgf4aQ==
   /@tsdotnet/disposable/1.1.22:
     dependencies:
       tslib: 2.2.0
@@ -324,6 +341,15 @@ packages:
     dev: false
     resolution:
       integrity: sha512-dKCsAJAuAbthg/ikWmCnxF9eTDigj5Spx3HwtKtgR1+z6xMAShLq8C7EicRN+x49wPu3hWmcwoNMb2ZxPqzZow==
+  /@tsdotnet/linked-node-list/1.3.16:
+    dependencies:
+      '@tsdotnet/collection-base': 2.0.9
+      '@tsdotnet/common-interfaces': 1.0.4
+      '@tsdotnet/exceptions': 1.0.17
+      tslib: 2.2.0
+    dev: false
+    resolution:
+      integrity: sha512-vqOYvisFmrPnCwHx+OiyvWU42m/Hxa40bWKZjubbEBbnzELzWJVHRla6rjYm2SoZ7+6LnPbOKFgMEZTpzIy/Cg==
   /@tsdotnet/object-pool/1.0.7:
     dependencies:
       '@tsdotnet/disposable': 1.1.22
@@ -344,6 +370,18 @@ packages:
     dev: false
     resolution:
       integrity: sha512-cbSTK4rydxXoOFYLhPnB1gSFY8WdAAcuu43ve3qcrlzpo3DC2QXbY32N3ayI/RuNpk0SX6SJ7Ip5W7xXX3O0uA==
+  /@tsdotnet/observable-base/1.0.17:
+    dependencies:
+      '@tsdotnet/collection-base': 2.0.9
+      '@tsdotnet/common-interfaces': 1.0.4
+      '@tsdotnet/disposable': 1.1.22
+      '@tsdotnet/exceptions': 1.0.17
+      '@tsdotnet/linked-node-list': 1.3.16
+      '@tsdotnet/ordered-registry': 1.0.18
+      tslib: 2.2.0
+    dev: false
+    resolution:
+      integrity: sha512-53d0jnBPRYiQ7ddHk2k8BCUBhXV8O668ZrQqg11Eyn2Jj1/c+iEOJpPNn/wQPkT9p4uTbWQ0tssxddGxCvvDMg==
   /@tsdotnet/ordered-registry/1.0.17:
     dependencies:
       '@tsdotnet/collection-base': 2.0.8
@@ -355,6 +393,17 @@ packages:
     dev: false
     resolution:
       integrity: sha512-7UlVa8bv7KuROY9sJhfjSu34uvf66GTqwIjxorxoOTTdiIrDTfPCdB4DKI33ig0zfKWSPDX3q7TyryaGI1GKSg==
+  /@tsdotnet/ordered-registry/1.0.18:
+    dependencies:
+      '@tsdotnet/collection-base': 2.0.9
+      '@tsdotnet/common-interfaces': 1.0.4
+      '@tsdotnet/compare': 1.3.17
+      '@tsdotnet/exceptions': 1.0.17
+      '@tsdotnet/linked-node-list': 1.3.16
+      tslib: 2.2.0
+    dev: false
+    resolution:
+      integrity: sha512-rl+JXYAa5nRadCT9kvITuG271SYBG12aaAw2QGjb36uqChSjb0q0qiJ/LKgCuoGWk2uX39BVWEqYIVdcUazw9A==
   /@tsdotnet/promises/1.0.10:
     dependencies:
       '@tsdotnet/common-interfaces': 1.0.4
@@ -376,13 +425,21 @@ packages:
     dev: false
     resolution:
       integrity: sha512-etlZkXFV3tz/S/E4Kh3+KKsE8ldpkwhYvmguOKBv4COrqhO8i+nlPNdPzJjIW5JobhBTi46NvlMI4QTIDbFVxQ==
-  /@tsdotnet/stopwatch/1.0.9:
+  /@tsdotnet/queue/1.2.4:
     dependencies:
-      '@tsdotnet/date-time': 1.0.22
+      '@tsdotnet/collection-base': 2.0.9
+      '@tsdotnet/exceptions': 1.0.17
       tslib: 2.2.0
     dev: false
     resolution:
-      integrity: sha512-YEwDahvCIxBzvV3dfog3bD3wrlzd7vSb59JklkT3uXZUzxXvVKgvKLTFzE+AotfUs599fU7DYD1GxNyWjQ91Ow==
+      integrity: sha512-gYthAEksQ6mYtNRO/mJ5MEPPyREKDfkTupsSbRhXKsfBi23HQKh4BG3iHm5NzBzMShTk/MsASn7sR2csP3UIow==
+  /@tsdotnet/stopwatch/1.0.10:
+    dependencies:
+      '@tsdotnet/date-time': 1.0.23
+      tslib: 2.2.0
+    dev: false
+    resolution:
+      integrity: sha512-gwnqW3JRleUPm722MPeVy4PvR2eHBQ/Yr2Ex0bKI0AAh7KWUWS010n728emVLJxchIHAmGbVCSl+cDsxcdL90Q==
   /@tsdotnet/threading/1.0.14:
     dependencies:
       '@tsdotnet/common-interfaces': 1.0.4
@@ -397,6 +454,20 @@ packages:
     dev: false
     resolution:
       integrity: sha512-V3FbbiTR2465/6aTdGZxvquId5VEvDjD/FWIbMOj4sdZTBqS8dfIG049Bf71zN21R4XbUGIuQUghGiGVy1XzGg==
+  /@tsdotnet/threading/1.0.15:
+    dependencies:
+      '@tsdotnet/common-interfaces': 1.0.4
+      '@tsdotnet/disposable': 1.1.22
+      '@tsdotnet/exceptions': 1.0.17
+      '@tsdotnet/lazy': 1.0.22
+      '@tsdotnet/linked-node-list': 1.3.16
+      '@tsdotnet/object-pool': 1.0.7
+      '@tsdotnet/observable-base': 1.0.17
+      '@tsdotnet/queue': 1.2.4
+      tslib: 2.2.0
+    dev: false
+    resolution:
+      integrity: sha512-b7+/JUkw6A7CQnmiN9Zssav+e0EtmcIq2DaUV2l5w1nrpQSO1K2CTjScJ6jZ0VWLDayNeM87Nvck6/kkpHrHOA==
   /@tsdotnet/type/1.0.11:
     dependencies:
       '@tsdotnet/common-interfaces': 1.0.4
@@ -3339,8 +3410,8 @@ specifiers:
   '@tsdotnet/disposable': ^1.1.22
   '@tsdotnet/object-pool': ^1.0.7
   '@tsdotnet/promises': ^1.0.10
-  '@tsdotnet/stopwatch': ^1.0.9
-  '@tsdotnet/threading': ^1.0.14
+  '@tsdotnet/stopwatch': ^1.0.10
+  '@tsdotnet/threading': ^1.0.15
   '@types/chai': ^4.2.16
   '@types/mocha': ^8.2.2
   '@types/node': ^14.14.41
