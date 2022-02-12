@@ -7,11 +7,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Parallel = void 0;
 const tslib_1 = require("tslib");
-const object_pool_1 = tslib_1.__importDefault(require("@tsdotnet/object-pool"));
+const object_pool_1 = (0, tslib_1.__importDefault)(require("@tsdotnet/object-pool"));
 const promises_1 = require("@tsdotnet/promises");
-const deferImmediate_1 = tslib_1.__importDefault(require("@tsdotnet/threading/dist/deferImmediate"));
+const deferImmediate_1 = (0, tslib_1.__importDefault)(require("@tsdotnet/threading/dist/deferImmediate"));
 const environment_1 = require("@tsdotnet/threading/dist/environment");
-const Worker_1 = tslib_1.__importDefault(require("@tsdotnet/threading/dist/Worker"));
+const Worker_1 = (0, tslib_1.__importDefault)(require("@tsdotnet/threading/dist/Worker"));
 //noinspection JSUnusedAssignment
 const MAX_WORKERS = 16, VOID0 = void 0, URL = typeof self !== 'undefined'
     ? (self.URL ? self.URL : self.webkitURL)
@@ -79,7 +79,7 @@ var workers;
                 getPool(k).give(w);
             }
             else {
-                deferImmediate_1.default(() => w.terminate());
+                (0, deferImmediate_1.default)(() => w.terminate());
             }
         }
         return null;
