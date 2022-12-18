@@ -58,7 +58,7 @@ const defaults: ParallelOptions = {
 	envNamespace: 'env'
 };
 
-type Lookup<T> = { [key: string]: T }
+type Lookup<T> = { [key: string]: T };
 
 function extend<TFrom extends Lookup<any>, TTo extends Lookup<any>> (
 	from: TFrom,
