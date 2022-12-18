@@ -23,7 +23,7 @@
     "precommit": "pnpm i && run-p lint test && run-p build:* && npm run-script validate && git status -s",
     "prepublishOnly": "npm run-script build && run-p validate test",
     "preversion": "run-p lint test",
-    "postversion": "git push && git push --tags && npm run-script docs && git commit -m \"Updated docs.\" docs && git push",
+    "postversion": "git push && git push --tags && npm run-script docs && git add -A && git commit -m \"Updated docs.\" docs && git push",
     "test": "mocha -r ts-node/register tests/**/*.ts",
     "validate": "node ./.build/validate-package.js"
   },
@@ -38,7 +38,7 @@
   "devDependencies": {
     "@types/chai": "^4.3.4",
     "@types/mocha": "^10.0.1",
-    "@types/node": "^18.11.16",
+    "@types/node": "^18.11.17",
     "@typescript-eslint/eslint-plugin": "^5.46.1",
     "@typescript-eslint/parser": "^5.46.1",
     "chai": "^4.3.7",
@@ -53,15 +53,15 @@
     "nyc": "^15.1.0",
     "rimraf": "^3.0.2",
     "ts-node": "^10.9.1",
-    "typedoc": "^0.23.22",
+    "typedoc": "^0.23.23",
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "@tsdotnet/disposable": "^1.1.23",
-    "@tsdotnet/object-pool": "^1.0.8",
-    "@tsdotnet/promises": "^1.0.15",
+    "@tsdotnet/disposable": "^1.1.24",
+    "@tsdotnet/object-pool": "^1.0.9",
+    "@tsdotnet/promises": "^1.0.16",
     "@tsdotnet/stopwatch": "^1.0.13",
-    "@tsdotnet/threading": "^1.0.19",
-    "tslib": "^2.3.1"
+    "@tsdotnet/threading": "^1.0.20",
+    "tslib": "^2.4.1"
   }
 }

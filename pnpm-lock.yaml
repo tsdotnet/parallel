@@ -1,14 +1,14 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@tsdotnet/disposable': ^1.1.23
-  '@tsdotnet/object-pool': ^1.0.8
-  '@tsdotnet/promises': ^1.0.15
+  '@tsdotnet/disposable': ^1.1.24
+  '@tsdotnet/object-pool': ^1.0.9
+  '@tsdotnet/promises': ^1.0.16
   '@tsdotnet/stopwatch': ^1.0.13
-  '@tsdotnet/threading': ^1.0.19
+  '@tsdotnet/threading': ^1.0.20
   '@types/chai': ^4.3.4
   '@types/mocha': ^10.0.1
-  '@types/node': ^18.11.16
+  '@types/node': ^18.11.17
   '@typescript-eslint/eslint-plugin': ^5.46.1
   '@typescript-eslint/parser': ^5.46.1
   chai: ^4.3.7
@@ -23,22 +23,22 @@ specifiers:
   nyc: ^15.1.0
   rimraf: ^3.0.2
   ts-node: ^10.9.1
-  tslib: ^2.3.1
-  typedoc: ^0.23.22
+  tslib: ^2.4.1
+  typedoc: ^0.23.23
   typescript: ^4.9.4
 
 dependencies:
-  '@tsdotnet/disposable': 1.1.23
-  '@tsdotnet/object-pool': 1.0.8
-  '@tsdotnet/promises': 1.0.15
+  '@tsdotnet/disposable': 1.1.24
+  '@tsdotnet/object-pool': 1.0.9
+  '@tsdotnet/promises': 1.0.16
   '@tsdotnet/stopwatch': 1.0.13
-  '@tsdotnet/threading': 1.0.19
-  tslib: 2.3.1
+  '@tsdotnet/threading': 1.0.20
+  tslib: 2.4.1
 
 devDependencies:
   '@types/chai': 4.3.4
   '@types/mocha': 10.0.1
-  '@types/node': 18.11.16
+  '@types/node': 18.11.17
   '@typescript-eslint/eslint-plugin': 5.46.1_mqzxmroayievgzgel6yrqgih5i
   '@typescript-eslint/parser': 5.46.1_lzzuuodtsqwxnvqeq4g4likcqa
   chai: 4.3.7
@@ -52,8 +52,8 @@ devDependencies:
   npm-run-all: 4.1.5
   nyc: 15.1.0
   rimraf: 3.0.2
-  ts-node: 10.9.1_rmyookn2hbqnnqjamditnjqvjq
-  typedoc: 0.23.22_typescript@4.9.4
+  ts-node: 10.9.1_moeqx3xmzxqxagf2sz6mqkbb7m
+  typedoc: 0.23.23_typescript@4.9.4
   typescript: 4.9.4
 
 packages:
@@ -342,143 +342,143 @@ packages:
     resolution: {integrity: sha512-eZxlbI8GZscaGS7kkc/trHTT5xgrjH3/1n2JDwusC9iahPKWMRvRjJSAN5mCXviuTGQ/lHnhvv8Q1YTpnfz9gA==}
     dev: true
 
-  /@tsdotnet/collection-base/2.0.11:
-    resolution: {integrity: sha512-tM5llJTuJC3RvHtC2mVHVIxMV6PeTJiq6jO+uQGf5uSrN5ZGSidtnbSk3pdMBx6MzT4JOyg6/lh4DO8XQxzGcQ==}
+  /@tsdotnet/collection-base/2.0.13:
+    resolution: {integrity: sha512-JpGDfaFq+TBdcOPwd5wAPo5TfGAtRvt+TY5L4/Fnr1WQy4VTm+HoySYNBV6fZvf9mLcfzuICAdp3CAT1LJ/Ejg==}
     dependencies:
       '@tsdotnet/common-interfaces': 1.0.4
-      '@tsdotnet/compare': 1.3.21
-      '@tsdotnet/exceptions': 1.0.18
-      tslib: 2.3.1
+      '@tsdotnet/compare': 1.3.22
+      '@tsdotnet/exceptions': 1.0.19
+      tslib: 2.4.1
     dev: false
 
   /@tsdotnet/common-interfaces/1.0.4:
     resolution: {integrity: sha512-/LngZd3+wOlPw5VdQMxB+QNLuVH+9QsqBD+RZyKEKDhENP36vPhsTGbvA7bFNITnN1AqPy/Ih+x8A+jCYUhUgA==}
     dev: false
 
-  /@tsdotnet/compare/1.3.21:
-    resolution: {integrity: sha512-cqAzJHkLkRnGV0Pxb7zTzpGRVdeX7HkgAFOXoT7j6baUELFMMbP2kv7dN+OlDRVuB86uN+R/S40G1mEJhL0ZKA==}
+  /@tsdotnet/compare/1.3.22:
+    resolution: {integrity: sha512-CenHMTcegrSpKNz2gwB9ealPotZRkrtNMvMTMK9LiWvPW+aFTf+IQKpAt6ktyl5lGIAaSepJ6AdPEEUFobj0lQ==}
     dependencies:
       '@tsdotnet/common-interfaces': 1.0.4
-      '@tsdotnet/type': 1.0.13
-      tslib: 2.3.1
+      '@tsdotnet/type': 1.0.14
+      tslib: 2.4.1
     dev: false
 
   /@tsdotnet/date-time/1.0.29:
     resolution: {integrity: sha512-KtSTkA9K8xDAsSyOL4Z2D6rWac2YXYxC2SpSBEQ3dj+SKcD4l5FxuPZtJB0OXVjOfSMJjOGFSWz6k5m+Xg95+A==}
     dependencies:
-      '@tsdotnet/compare': 1.3.21
-      '@tsdotnet/exceptions': 1.0.18
-      '@tsdotnet/lazy': 1.0.24
-      '@tsdotnet/type': 1.0.13
-      tslib: 2.3.1
+      '@tsdotnet/compare': 1.3.22
+      '@tsdotnet/exceptions': 1.0.19
+      '@tsdotnet/lazy': 1.0.25
+      '@tsdotnet/type': 1.0.14
+      tslib: 2.4.1
     dev: false
 
-  /@tsdotnet/disposable/1.1.23:
-    resolution: {integrity: sha512-Cw/X8BREYmssqs1lU4BD7pfQm07eYp2OnoYACRNL/Q7DolhODrckVEksN5lWSycBuhkcvjNWjUcRgmPYu6xRBg==}
+  /@tsdotnet/disposable/1.1.24:
+    resolution: {integrity: sha512-1UYUAL6kRuOpi+BNUyDh/KXMEnKb6JwUy/Q878u72YtrsMdMyegk+o3xi+dsVGvAnPxNIDQ7rmNb9wvAaJh0SA==}
     dependencies:
-      tslib: 2.3.1
+      tslib: 2.4.1
     dev: false
 
-  /@tsdotnet/exceptions/1.0.18:
-    resolution: {integrity: sha512-POqwDDSOf0IfVdVZpLINYZr7lPw89o9uvjHqVNQtsXLuhOOwnBVPRplxDdkoiRlnfVq8DWkbXU9SRrSN2b6gOQ==}
+  /@tsdotnet/exceptions/1.0.19:
+    resolution: {integrity: sha512-P/Gb4bp6CAXR0Xnq9YV9c7XU3oTGRsoQKiP6pvN1dp2bCY0YC2w9FZU3ZrAsMWv6kX/KkHBjhidC4Bv4oLQdxQ==}
     dependencies:
-      tslib: 2.3.1
+      tslib: 2.4.1
     dev: false
 
-  /@tsdotnet/lazy/1.0.24:
-    resolution: {integrity: sha512-qxV1mRJnFBh/QEdqRTsTw/Z1klhE8Fr9eVmkTMfXb0MJDcfYGSvg0F/48usIdP75JoZ9yBp6HUJbAC0YINPceQ==}
+  /@tsdotnet/lazy/1.0.25:
+    resolution: {integrity: sha512-/lmNwDJhprs1rDvzldAoqum/P23MbTLrpRR1wUHuqG7SCWEhSpIcOLm+4NzsCTbgXa3TgqvQzAJN05xOLBkCVg==}
     dependencies:
-      '@tsdotnet/disposable': 1.1.23
-      tslib: 2.3.1
+      '@tsdotnet/disposable': 1.1.24
+      tslib: 2.4.1
     dev: false
 
-  /@tsdotnet/linked-node-list/1.3.19:
-    resolution: {integrity: sha512-r5UWwi6GWsXsCO++Tj/PwYToqr7Kd4dZSEtpT67XeMNBMUxUzqhnIslDteBA4t7yOFNKFmVp5eTghNu1sQ71gg==}
+  /@tsdotnet/linked-node-list/1.3.20:
+    resolution: {integrity: sha512-jZEvYXvNiPTNQHZtsZgMRnNVyZ1jTlek6uxQwb78Yzt8MoQv1vDk579mRND+PEZ52Zxpcq1bLlDTiIZqNdA3yw==}
     dependencies:
-      '@tsdotnet/collection-base': 2.0.11
+      '@tsdotnet/collection-base': 2.0.13
       '@tsdotnet/common-interfaces': 1.0.4
-      '@tsdotnet/exceptions': 1.0.18
-      tslib: 2.3.1
+      '@tsdotnet/exceptions': 1.0.19
+      tslib: 2.4.1
     dev: false
 
-  /@tsdotnet/object-pool/1.0.8:
-    resolution: {integrity: sha512-jPg/EcWBmX6yilIOu2figJ2nK5voNyScVXW6JQxMioSzA2IXigdAeTUsKmHDwEZ6M/0EiNxI6MkH5eCa4JoVXg==}
+  /@tsdotnet/object-pool/1.0.9:
+    resolution: {integrity: sha512-prLrLIn8ZvyVYXT8Lse2Xy656UOSEzoZI/U/j32lX/ROkbecA6h19U2KWeSioZWTsb7qeFXmkZxvx6o/xgCA/g==}
     dependencies:
-      '@tsdotnet/disposable': 1.1.23
-      '@tsdotnet/exceptions': 1.0.18
-      tslib: 2.3.1
+      '@tsdotnet/disposable': 1.1.24
+      '@tsdotnet/exceptions': 1.0.19
+      tslib: 2.4.1
     dev: false
 
-  /@tsdotnet/observable-base/1.0.20:
-    resolution: {integrity: sha512-ZzGcmQBMDqsb1lM25kpbt+0S1+1anpGGO2jo1UKnKUmRenAFH37RVR2kxvBtNpjypott6Rzo0RQrIagUXqXE5w==}
+  /@tsdotnet/observable-base/1.0.21:
+    resolution: {integrity: sha512-SY2p8pvCjfcBEmzFgqB8W2PzIb7MERZb3euG+VhAeI9qM4WPlBajzwhUa7ilibQqf2QVjXUa5n1twMNBSkKvFw==}
     dependencies:
-      '@tsdotnet/collection-base': 2.0.11
+      '@tsdotnet/collection-base': 2.0.13
       '@tsdotnet/common-interfaces': 1.0.4
-      '@tsdotnet/disposable': 1.1.23
-      '@tsdotnet/exceptions': 1.0.18
-      '@tsdotnet/linked-node-list': 1.3.19
-      '@tsdotnet/ordered-registry': 1.0.21
-      tslib: 2.3.1
+      '@tsdotnet/disposable': 1.1.24
+      '@tsdotnet/exceptions': 1.0.19
+      '@tsdotnet/linked-node-list': 1.3.20
+      '@tsdotnet/ordered-registry': 1.0.22
+      tslib: 2.4.1
     dev: false
 
-  /@tsdotnet/ordered-registry/1.0.21:
-    resolution: {integrity: sha512-BNn6P0NGp/kqPpMqmCqGwDp42LLzOE1KN8ncDrnxW/CAOUI8hD0PFa75UbbVe2kkomlmUZevLECzA5kkL+rm2w==}
+  /@tsdotnet/ordered-registry/1.0.22:
+    resolution: {integrity: sha512-5qN+u8dzD8MEpA2tIjrnUfmo1Dq1hI+CuhmXL0//p5eH7EkDLOwKWexIaKNjjmEVoJyYTxsIEAp1fAa+QRAp+Q==}
     dependencies:
-      '@tsdotnet/collection-base': 2.0.11
+      '@tsdotnet/collection-base': 2.0.13
       '@tsdotnet/common-interfaces': 1.0.4
-      '@tsdotnet/compare': 1.3.21
-      '@tsdotnet/exceptions': 1.0.18
-      '@tsdotnet/linked-node-list': 1.3.19
-      tslib: 2.3.1
+      '@tsdotnet/compare': 1.3.22
+      '@tsdotnet/exceptions': 1.0.19
+      '@tsdotnet/linked-node-list': 1.3.20
+      tslib: 2.4.1
     dev: false
 
-  /@tsdotnet/promises/1.0.15:
-    resolution: {integrity: sha512-SWEqIorVBP/TK7RYTPa/0I2hniqywuPOx0UkW29pU1v2jEcq0sdS8JL3fUtT4NHu07stCg2rQ1qZVhRAYmJfuA==}
+  /@tsdotnet/promises/1.0.16:
+    resolution: {integrity: sha512-g7iI2/khxV7KKkgOA7gsHH6ZcYl9BvEhOOWiB8ndo5/aSGqS5UhOCBp/KiT2VuzyjaU17MHvDJdacev12zl3aw==}
     dependencies:
       '@tsdotnet/common-interfaces': 1.0.4
-      '@tsdotnet/compare': 1.3.21
-      '@tsdotnet/disposable': 1.1.23
-      '@tsdotnet/exceptions': 1.0.18
-      '@tsdotnet/object-pool': 1.0.8
-      '@tsdotnet/threading': 1.0.19
-      '@tsdotnet/type': 1.0.13
-      tslib: 2.3.1
+      '@tsdotnet/compare': 1.3.22
+      '@tsdotnet/disposable': 1.1.24
+      '@tsdotnet/exceptions': 1.0.19
+      '@tsdotnet/object-pool': 1.0.9
+      '@tsdotnet/threading': 1.0.20
+      '@tsdotnet/type': 1.0.14
+      tslib: 2.4.1
     dev: false
 
-  /@tsdotnet/queue/1.2.7:
-    resolution: {integrity: sha512-6St6BRGIQOxpwoNrvYlh+J0o3BijavnvSyn7NafmtYKzKkXH6huxk8uuXw7NG/3j+w0zxr+jfnCSuIgPQx4tkA==}
+  /@tsdotnet/queue/1.2.8:
+    resolution: {integrity: sha512-d8FOJvGFyvn5pNR6WVF4o7thL2dXGGdYb4Z4DEQUXisws33TZffbGsX3p9uwM+LlYe4QOG7gBWQOEJKv8pB5bw==}
     dependencies:
-      '@tsdotnet/collection-base': 2.0.11
-      '@tsdotnet/exceptions': 1.0.18
-      tslib: 2.3.1
+      '@tsdotnet/collection-base': 2.0.13
+      '@tsdotnet/exceptions': 1.0.19
+      tslib: 2.4.1
     dev: false
 
   /@tsdotnet/stopwatch/1.0.13:
     resolution: {integrity: sha512-1mHpLCDHK0sZuAn9aygcvc5zhOr8Z3Z5a+ek8ibiYv47fdahWsLU07mGqMEky2qQ6ljVxYPQ5A2jCp9PsMio3w==}
     dependencies:
       '@tsdotnet/date-time': 1.0.29
-      tslib: 2.3.1
+      tslib: 2.4.1
     dev: false
 
-  /@tsdotnet/threading/1.0.19:
-    resolution: {integrity: sha512-ksUn5eGKDa7JCIjU0MSPY9XzZ3gCP2KH4MgMHf+bX6gFT7R+pyYce7MEd4r5ucsGqKxenba28asbJoMfCpOvyA==}
+  /@tsdotnet/threading/1.0.20:
+    resolution: {integrity: sha512-DdPdj090J5NYBhY63lkIXXWhmCxa1TG9jFD2UCzK1hAYzSLfS755z50wEIE8iGihkHMF8l3Jy5vlrgLQ+z9gAg==}
     dependencies:
       '@tsdotnet/common-interfaces': 1.0.4
-      '@tsdotnet/disposable': 1.1.23
-      '@tsdotnet/exceptions': 1.0.18
-      '@tsdotnet/lazy': 1.0.24
-      '@tsdotnet/linked-node-list': 1.3.19
-      '@tsdotnet/object-pool': 1.0.8
-      '@tsdotnet/observable-base': 1.0.20
-      '@tsdotnet/queue': 1.2.7
-      tslib: 2.3.1
+      '@tsdotnet/disposable': 1.1.24
+      '@tsdotnet/exceptions': 1.0.19
+      '@tsdotnet/lazy': 1.0.25
+      '@tsdotnet/linked-node-list': 1.3.20
+      '@tsdotnet/object-pool': 1.0.9
+      '@tsdotnet/observable-base': 1.0.21
+      '@tsdotnet/queue': 1.2.8
+      tslib: 2.4.1
     dev: false
 
-  /@tsdotnet/type/1.0.13:
-    resolution: {integrity: sha512-REx8qtNKYaLQSjjrJlsrpDL+V0CkufN3kDkrJmf3UDxOUgpEayKmHfcQQ26LEcSOflXEkI30WXfzDnsDqS87OA==}
+  /@tsdotnet/type/1.0.14:
+    resolution: {integrity: sha512-XDoeup818efrULTgvcyiNTaPsYLVU6uR0Apxt/i5g087hrrGmrglwRcsLiLA7Z1xMcCVIJUVN65hAei7RpUO1A==}
     dependencies:
       '@tsdotnet/common-interfaces': 1.0.4
-      tslib: 2.3.1
+      tslib: 2.4.1
     dev: false
 
   /@types/chai/4.3.4:
@@ -501,8 +501,8 @@ packages:
     resolution: {integrity: sha512-/fvYntiO1GeICvqbQ3doGDIP97vWmvFt83GKguJ6prmQM2iXZfFcq6YE8KteFyRtX2/h5Hf91BYvPodJKFYv5Q==}
     dev: true
 
-  /@types/node/18.11.16:
-    resolution: {integrity: sha512-6T7P5bDkRhqRxrQtwj7vru+bWTpelgtcETAZEUSdq0YISKz8WKdoBukQLYQQ6DFHvU9JRsbFq0JH5C51X2ZdnA==}
+  /@types/node/18.11.17:
+    resolution: {integrity: sha512-HJSUJmni4BeDHhfzn6nF0sVmd1SMezP7/4F0Lq+aXzmp2xm9O7WXrUtHW/CHlYVtZUbByEvWidHqRtcJXGF2Ng==}
     dev: true
 
   /@types/semver/7.3.13:
@@ -2892,7 +2892,7 @@ packages:
       is-number: 7.0.0
     dev: true
 
-  /ts-node/10.9.1_rmyookn2hbqnnqjamditnjqvjq:
+  /ts-node/10.9.1_moeqx3xmzxqxagf2sz6mqkbb7m:
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
@@ -2911,7 +2911,7 @@ packages:
       '@tsconfig/node12': 1.0.7
       '@tsconfig/node14': 1.0.0
       '@tsconfig/node16': 1.0.2
-      '@types/node': 18.11.16
+      '@types/node': 18.11.17
       acorn: 8.7.0
       acorn-walk: 8.2.0
       arg: 4.1.3
@@ -2936,8 +2936,8 @@ packages:
     resolution: {integrity: sha512-i/6DQjL8Xf3be4K/E6Wgpekn5Qasl1usyw++dAA35Ue5orEn65VIxOA+YvNNl9HV3qv70T7CNwjODHZrLwvd1Q==}
     dev: true
 
-  /tslib/2.3.1:
-    resolution: {integrity: sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==}
+  /tslib/2.4.1:
+    resolution: {integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==}
     dev: false
 
   /tsutils/3.21.0_typescript@4.9.4:
@@ -2978,8 +2978,8 @@ packages:
       is-typedarray: 1.0.0
     dev: true
 
-  /typedoc/0.23.22_typescript@4.9.4:
-    resolution: {integrity: sha512-5sJkjK60xp8A7YpcYniu3+Wf0QcgojEnhzHuCN+CkdpQkKRhOspon/9+sGTkGI8kjVkZs3KHrhltpQyVhRMVfw==}
+  /typedoc/0.23.23_typescript@4.9.4:
+    resolution: {integrity: sha512-cg1YQWj+/BU6wq74iott513U16fbrPCbyYs04PHZgvoKJIc6EY4xNobyDZh4KMfRGW8Yjv6wwIzQyoqopKOUGw==}
     engines: {node: '>= 14.14'}
     hasBin: true
     peerDependencies:

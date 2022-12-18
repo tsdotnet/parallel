@@ -24,7 +24,7 @@ export interface ParallelOptions {
 /**
  * A URL to a global script to into the worker or a function to serialize.
  */
-export declare type RequireType = string | Function | {
+export type RequireType = string | Function | {
     name?: string;
     fn: Function;
 };
