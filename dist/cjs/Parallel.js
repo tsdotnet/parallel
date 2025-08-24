@@ -1,22 +1,22 @@
+"use strict";
 /*!
  * @author electricessence / https://github.com/electricessence/
  * @license MIT
  * Originally based upon Parallel.js: https://github.com/adambom/parallel.js/blob/master/lib/parallel.js
  */
-import ObjectPool from '@tsdotnet/object-pool';
-import { ArrayPromise, PromiseCollection, TSDNPromise } from '@tsdotnet/promises';
-import deferImmediate from '@tsdotnet/threading/dist/deferImmediate';
-import { isNodeJS } from '@tsdotnet/threading/dist/environment';
-import WorkerN from '@tsdotnet/threading/dist/Worker';
-//noinspection JSUnusedAssignment
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Parallel = void 0;
+const tslib_1 = require("tslib");
+const object_pool_1 = tslib_1.__importDefault(require("@tsdotnet/object-pool"));
+const promises_1 = require("@tsdotnet/promises");
+const threading_1 = require("@tsdotnet/threading");
+const isNodeJS = threading_1.environment.isNodeJS;
 const MAX_WORKERS = 16, VOID0 = void 0, URL = typeof self !== 'undefined'
     ? (self.URL ? self.URL : self.webkitURL)
-    : null, _supports = isNodeJS || !!self.Worker; // node always supports parallel
-//noinspection JSUnusedAssignment
+    : null, _supports = isNodeJS || !!self.Worker;
 const defaults = {
     evalPath: isNodeJS ? __dirname + '/eval.js' : VOID0,
     maxConcurrency: isNodeJS
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
         ? require('os').cpus().length
         : (navigator.hardwareConcurrency || 4),
     allowSynchronous: true,
@@ -40,7 +40,7 @@ function interact(w, onMessage, onError, message) {
     if (message !== VOID0)
         w.postMessage(message);
 }
-class WorkerPromise extends TSDNPromise {
+class WorkerPromise extends promises_1.TSDNPromise {
     constructor(worker, data) {
         super((resolve, reject) => {
             interact(worker, (response) => {
@@ -53,15 +53,10 @@ class WorkerPromise extends TSDNPromise {
 }
 var workers;
 (function (workers) {
-    /*
-     * Note:
-     * Currently there is nothing preventing excessive numbers of workers from being generated.
-     * Eventually there will be a master pool count which will regulate these workers.
-     */
     function getPool(key) {
         let pool = workerPools[key];
         if (!pool) {
-            workerPools[key] = pool = new ObjectPool(undefined, undefined, 8);
+            workerPools[key] = pool = new object_pool_1.default(undefined, undefined, 8);
         }
         return pool;
     }
@@ -75,7 +70,7 @@ var workers;
                 getPool(k).give(w);
             }
             else {
-                deferImmediate(() => w.terminate());
+                (0, threading_1.deferImmediate)(() => w.terminate());
             }
         }
         return null;
@@ -86,7 +81,7 @@ var workers;
     }
     workers.tryGet = tryGet;
     function getNew(key, url) {
-        const worker = new WorkerN(url);
+        const worker = new threading_1.Worker(url);
         worker.__key = key;
         if (!worker.dispose) {
             worker.dispose = () => {
@@ -100,83 +95,35 @@ var workers;
     }
     workers.getNew = getNew;
 })(workers || (workers = {}));
-export class Parallel {
+class Parallel {
     constructor(options) {
         this.options = extend(defaults, options);
         this._requiredScripts = [];
         this._requiredFunctions = [];
         this.ensureClampedMaxConcurrency();
     }
-    /**
-     * Returns true if paralleling is supported.
-     * @return {boolean}
-     */
     static get isSupported() { return _supports; }
-    /**
-     * Creates a Parallel with the specified max concurrency.
-     * @param {number} max
-     * @return {Parallel}
-     */
     static maxConcurrency(max) {
         return new Parallel({ maxConcurrency: max });
     }
-    /**
-     * Returns a Parallel with the specified options.
-     * @param {ParallelOptions} options
-     * @return {Parallel}
-     */
     static options(options) {
         return new Parallel(options);
     }
-    /**
-     * Returns a parallel with the specified prerequisite requirements.
-     * @param {RequireType} required
-     * @return {Parallel}
-     */
     static require(...required) {
         return (new Parallel()).requireThese(required);
     }
-    /**
-     * Returns a parallel with the specified prerequisite requirements.
-     * @param {RequireType} required
-     * @return {Parallel}
-     */
     static requireThese(required) {
         return (new Parallel()).requireThese(required);
     }
-    /**
-     * Starts a new default option (no requirements) Parallel with the specified data and task and resolves a promise when complete.
-     * @param {T} data
-     * @param {(data: T) => U} task
-     * @param env
-     * @return {PromiseBase<U>}
-     */
     static startNew(data, task, env) {
         return (new Parallel()).startNew(data, task, env);
     }
-    /**
-     * Asynchronously resolves an array of results processed through the paralleled task function.
-     * @param {T[]} data
-     * @param {(data: T) => U} task
-     * @param env
-     * @return {ArrayPromise<U>}
-     */
     static map(data, task, env) {
         return (new Parallel()).map(data, task, env);
     }
-    /**
-     * Adds prerequisites (required) for the workers.
-     * @param {RequireType} required URLs (strings) or Functions (serialized).
-     * @return {this}
-     */
     require(...required) {
         return this.requireThese(required);
     }
-    /**
-     * Adds prerequisites (required) for the workers.
-     * @param {RequireType} required URLs (strings) or Functions (serialized).
-     * @return {this}
-     */
     requireThese(required) {
         for (const a of required) {
             switch (typeof a) {
@@ -195,13 +142,6 @@ export class Parallel {
         }
         return this;
     }
-    /**
-     * Schedules the task to be run in the worker pool.
-     * @param data
-     * @param task
-     * @param env
-     * @returns {TSDNPromise<U>|TSDNPromise}
-     */
     startNew(data, task, env) {
         const _ = this;
         const maxConcurrency = this.ensureClampedMaxConcurrency();
@@ -218,15 +158,8 @@ export class Parallel {
             ? 'Workers do not exist and synchronous operation not allowed!'
             : '\'maxConcurrency\' set to 0 but \'allowSynchronous\' is false.');
     }
-    /**
-     * Runs the task within the local thread/process.
-     * Is good for use with testing.
-     * @param data
-     * @param task
-     * @returns {TSDNPromise<U>|TSDNPromise}
-     */
     startLocal(data, task) {
-        return new TSDNPromise((resolve, reject) => {
+        return new promises_1.TSDNPromise((resolve, reject) => {
             try {
                 resolve(task(data));
             }
@@ -235,16 +168,7 @@ export class Parallel {
             }
         });
     }
-    /**
-     * Returns an array of promises that each resolve after their task completes.
-     * Provides a potential performance benefit by not waiting for all promises to resolve before proceeding to next step.
-     * @param data
-     * @param task
-     * @param env
-     * @returns {PromiseCollection}
-     */
     pipe(data, task, env) {
-        // The resultant promise collection will make an internal copy...
         let result;
         if (data && data.length) {
             const len = data.length;
@@ -261,13 +185,10 @@ export class Parallel {
                         throw new Error(maxConcurrency
                             ? 'Workers do not exist and synchronous operation not allowed!'
                             : '\'maxConcurrency\' set to 0 but \'allowSynchronous\' is false.');
-                    // Concurrency doesn't matter in a single thread... Just queue it all up.
-                    return TSDNPromise.map(data, task);
+                    return promises_1.TSDNPromise.map(data, task);
                 }
                 if (!result) {
-                    // There is a small risk that the consumer could call .resolve() which would result in a double resolution.
-                    // But it's important to minimize the number of objects created.
-                    result = data.map(() => new TSDNPromise());
+                    result = data.map(() => new promises_1.TSDNPromise());
                 }
                 const next = () => {
                     if (error) {
@@ -275,18 +196,14 @@ export class Parallel {
                     }
                     if (worker) {
                         if (i < len) {
-                            //noinspection JSReferencingMutableVariableFromClosure
                             const ii = i++, p = result[ii];
                             const wp = new WorkerPromise(worker, data[ii]);
-                            //noinspection JSIgnoredPromiseFromCall
                             wp.thenSynchronous(r => {
-                                //noinspection JSIgnoredPromiseFromCall
                                 p.resolve(r);
                                 next();
                             }, e => {
                                 if (!error) {
                                     error = e;
-                                    //noinspection JSIgnoredPromiseFromCall
                                     p.reject(e);
                                     worker = workers.recycle(worker);
                                 }
@@ -301,22 +218,13 @@ export class Parallel {
                 next();
             }
         }
-        return new PromiseCollection(result);
+        return new promises_1.PromiseCollection(result);
     }
-    /**
-     * Waits for all tasks to resolve and returns a promise with the results.
-     * @param data
-     * @param task
-     * @param env
-     * @returns {ArrayPromise}
-     */
     map(data, task, env) {
         if (!data || !data.length)
-            return ArrayPromise.fulfilled([]);
-        // Would return the same result, but has extra overhead.
-        // return this.pipe(data,task).all();
-        data = data.slice(); // Never use the original.
-        return new ArrayPromise((resolve, reject) => {
+            return promises_1.ArrayPromise.fulfilled([]);
+        data = data.slice();
+        return new promises_1.ArrayPromise((resolve, reject) => {
             const result = [], len = data.length;
             result.length = len;
             const taskString = task.toString();
@@ -328,8 +236,7 @@ export class Parallel {
                 if (!worker) {
                     if (!this.options.allowSynchronous)
                         throw new Error('Workers do not exist and synchronous operation not allowed!');
-                    // Concurrency doesn't matter in a single thread... Just queue it all up.
-                    resolve(TSDNPromise.map(data, task).all());
+                    resolve(promises_1.TSDNPromise.map(data, task).all());
                     return;
                 }
                 const next = () => {
@@ -340,7 +247,6 @@ export class Parallel {
                         if (i < len) {
                             const ii = i++;
                             const wp = new WorkerPromise(worker, data[ii]);
-                            //noinspection JSIgnoredPromiseFromCall
                             wp.thenSynchronous(r => {
                                 result[ii] = r;
                                 next();
@@ -389,7 +295,7 @@ export class Parallel {
     }
     _spawnWorker(task, env) {
         const src = this._getWorkerSource(task, env);
-        if (WorkerN === VOID0)
+        if (threading_1.Worker === VOID0)
             return VOID0;
         let worker = workers.tryGet(src);
         if (worker)
@@ -424,5 +330,6 @@ export class Parallel {
         return (maxConcurrency || maxConcurrency === 0) ? maxConcurrency : MAX_WORKERS;
     }
 }
-export default Parallel;
+exports.Parallel = Parallel;
+exports.default = Parallel;
 //# sourceMappingURL=Parallel.js.map

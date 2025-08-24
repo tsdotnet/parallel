@@ -4,9 +4,9 @@
  * Originally based upon Parallel.js: https://github.com/adambom/parallel.js/blob/master/lib/parallel.js
  */
 import { ArrayPromise, PromiseBase, PromiseCollection, TSDNPromise } from '@tsdotnet/promises';
-import { WorkerLike } from '@tsdotnet/threading/dist/WorkerLike';
+import { type WorkerLike } from '@tsdotnet/threading';
 export interface ParallelOptions {
-    evalPath?: string;
+    evalPath?: string | undefined;
     maxConcurrency?: number;
     allowSynchronous?: boolean;
     env?: any;

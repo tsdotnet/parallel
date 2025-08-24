@@ -5,12 +5,10 @@
  */
 
 import ObjectPool from '@tsdotnet/object-pool';
-import {ArrayPromise, PromiseBase, PromiseCollection, TSDNPromise} from '@tsdotnet/promises';
-import deferImmediate from '@tsdotnet/threading/dist/deferImmediate';
-import {isNodeJS} from '@tsdotnet/threading/dist/environment';
-import WorkerN from '@tsdotnet/threading/dist/Worker';
-import {WorkerLike} from '@tsdotnet/threading/dist/WorkerLike';
+import { ArrayPromise, PromiseBase, PromiseCollection, TSDNPromise } from '@tsdotnet/promises';
+import { type WorkerLike, deferImmediate, environment, Worker as WorkerN } from '@tsdotnet/threading';
 
+const isNodeJS: boolean = environment.isNodeJS;
 /* eslint-disable @typescript-eslint/explicit-function-return-type, @typescript-eslint/ban-types */
 
 declare const navigator: any;
@@ -19,18 +17,17 @@ declare const __dirname: string;
 //noinspection JSUnusedAssignment
 const
 	MAX_WORKERS: number = 16,
-	VOID0: undefined    = void 0,
-	URL                 = typeof self!=='undefined'
+	VOID0: undefined = void 0,
+	URL = typeof self !== 'undefined'
 		? (self.URL ? self.URL : self.webkitURL)
 		: null,
-	_supports           = isNodeJS || !!self.Worker; // node always supports parallel
+	_supports = isNodeJS || !!self.Worker; // node always supports parallel
 
-export interface ParallelOptions
-{
+export interface ParallelOptions {
 	/**
 	 * This is the path to the file eval.js.  This is required when running in node, and required for some browsers (IE 10) in order to work around cross-domain restrictions for web workers.  Defaults to the same location as parallel.js in node environments, and null in the browser.
 	 **/
-	evalPath?: string;
+	evalPath?: string | undefined;
 
 	/**
 	 * The maximum number of permitted worker threads.  This will default to 4, or the number of CPUs on your computer if you're running node.
@@ -60,34 +57,29 @@ const defaults: ParallelOptions = {
 
 type Lookup<T> = { [key: string]: T };
 
-function extend<TFrom extends Lookup<any>, TTo extends Lookup<any>> (
+function extend<TFrom extends Lookup<any>, TTo extends Lookup<any>>(
 	from: TFrom,
-	to?: TTo): TTo extends undefined ? TFrom : TFrom & TTo
-{
-	if(!to) to = {} as any;
-	for(const key of Object.keys(from))
-	{
-		if(to![key]===VOID0) (to as any)[key] = from[key];
+	to?: TTo): TTo extends undefined ? TFrom : TFrom & TTo {
+	if (!to) to = {} as any;
+	for (const key of Object.keys(from)) {
+		if (to![key] === VOID0) (to as any)[key] = from[key];
 	}
 	return to as any;
 }
 
-function interact (
+function interact(
 	w: WorkerLike,
 	onMessage: (msg: { data: any }) => void,
 	onError: (e: any) => void,
-	message?: any): void
-{
-	if(onMessage) w.onmessage = onMessage;
-	if(onError) w.onerror = onError;
-	if(message!==VOID0) w.postMessage(message);
+	message?: any): void {
+	if (onMessage) w.onmessage = onMessage;
+	if (onError) w.onerror = onError;
+	if (message !== VOID0) w.postMessage(message);
 }
 
 class WorkerPromise<T>
-	extends TSDNPromise<T>
-{
-	constructor (worker: WorkerLike, data: any)
-	{
+	extends TSDNPromise<T> {
+	constructor(worker: WorkerLike, data: any) {
 		super((resolve, reject) => {
 			interact(
 				worker,
@@ -107,8 +99,7 @@ class WorkerPromise<T>
  */
 export type RequireType = string | Function | { name?: string; fn: Function };
 
-namespace workers
-{
+namespace workers {
 
 	/*
 	 * Note:
@@ -116,11 +107,9 @@ namespace workers
 	 * Eventually there will be a master pool count which will regulate these workers.
 	 */
 
-	function getPool (key: string): ObjectPool<WorkerLike>
-	{
+	function getPool(key: string): ObjectPool<WorkerLike> {
 		let pool = workerPools[key];
-		if(!pool)
-		{
+		if (!pool) {
 			workerPools[key] = pool = new ObjectPool<WorkerLike>(undefined, undefined, 8);
 		}
 		return pool;
@@ -128,36 +117,29 @@ namespace workers
 
 	const workerPools: Lookup<ObjectPool<WorkerLike>> = {};
 
-	export function recycle (w: WorkerLike | null | undefined): null
-	{ // always returns null.
-		if(w)
-		{
+	export function recycle(w: WorkerLike | null | undefined): null { // always returns null.
+		if (w) {
 			w.onerror = null;
 			w.onmessage = null;
 			const k = (w as any).__key;
-			if(k)
-			{
+			if (k) {
 				getPool(k).give(w);
 			}
-			else
-			{
+			else {
 				deferImmediate(() => w.terminate());
 			}
 		}
 		return null;
 	}
 
-	export function tryGet (key: string): WorkerLike | undefined
-	{
+	export function tryGet(key: string): WorkerLike | undefined {
 		return getPool(key).tryTake();
 	}
 
-	export function getNew (key: string, url: string): WorkerLike
-	{
+	export function getNew(key: string, url: string): WorkerLike {
 		const worker: any = new WorkerN(url);
 		worker.__key = key;
-		if(!worker.dispose)
-		{
+		if (!worker.dispose) {
 			worker.dispose = () => {
 				worker.onmessage = null;
 				worker.onerror = null;
@@ -170,14 +152,12 @@ namespace workers
 }
 
 
-export class Parallel
-{
+export class Parallel {
 	readonly options: ParallelOptions;
 	protected readonly _requiredScripts: string[];
 	protected readonly _requiredFunctions: { name?: string; fn: Function }[];
 
-	constructor (options?: ParallelOptions)
-	{
+	constructor(options?: ParallelOptions) {
 		this.options = extend(defaults, options);
 		this._requiredScripts = [];
 		this._requiredFunctions = [];
@@ -189,17 +169,15 @@ export class Parallel
 	 * Returns true if paralleling is supported.
 	 * @return {boolean}
 	 */
-	static get isSupported (): boolean
-	{ return _supports; }
+	static get isSupported(): boolean { return _supports; }
 
 	/**
 	 * Creates a Parallel with the specified max concurrency.
 	 * @param {number} max
 	 * @return {Parallel}
 	 */
-	static maxConcurrency (max: number): Parallel
-	{
-		return new Parallel({maxConcurrency: max});
+	static maxConcurrency(max: number): Parallel {
+		return new Parallel({ maxConcurrency: max });
 	}
 
 	/**
@@ -207,8 +185,7 @@ export class Parallel
 	 * @param {ParallelOptions} options
 	 * @return {Parallel}
 	 */
-	static options (options?: ParallelOptions): Parallel
-	{
+	static options(options?: ParallelOptions): Parallel {
 		return new Parallel(options);
 	}
 
@@ -217,8 +194,7 @@ export class Parallel
 	 * @param {RequireType} required
 	 * @return {Parallel}
 	 */
-	static require (...required: RequireType[]): Parallel
-	{
+	static require(...required: RequireType[]): Parallel {
 		return (new Parallel()).requireThese(required);
 	}
 
@@ -227,8 +203,7 @@ export class Parallel
 	 * @param {RequireType} required
 	 * @return {Parallel}
 	 */
-	static requireThese (required: RequireType[]): Parallel
-	{
+	static requireThese(required: RequireType[]): Parallel {
 		return (new Parallel()).requireThese(required);
 	}
 
@@ -239,8 +214,7 @@ export class Parallel
 	 * @param env
 	 * @return {PromiseBase<U>}
 	 */
-	static startNew<T, U> (data: T, task: (data: T) => U, env?: unknown): PromiseBase<U>
-	{
+	static startNew<T, U>(data: T, task: (data: T) => U, env?: unknown): PromiseBase<U> {
 		return (new Parallel()).startNew(data, task, env);
 	}
 
@@ -251,8 +225,7 @@ export class Parallel
 	 * @param env
 	 * @return {ArrayPromise<U>}
 	 */
-	static map<T, U> (data: T[], task: (data: T) => U, env?: unknown): ArrayPromise<U>
-	{
+	static map<T, U>(data: T[], task: (data: T) => U, env?: unknown): ArrayPromise<U> {
 		return (new Parallel()).map(data, task, env);
 	}
 
@@ -261,8 +234,7 @@ export class Parallel
 	 * @param {RequireType} required URLs (strings) or Functions (serialized).
 	 * @return {this}
 	 */
-	require (...required: RequireType[]): this
-	{
+	require(...required: RequireType[]): this {
 		return this.requireThese(required);
 	}
 
@@ -271,17 +243,14 @@ export class Parallel
 	 * @param {RequireType} required URLs (strings) or Functions (serialized).
 	 * @return {this}
 	 */
-	requireThese (required: RequireType[]): this
-	{
-		for(const a of required)
-		{
-			switch(typeof a)
-			{
+	requireThese(required: RequireType[]): this {
+		for (const a of required) {
+			switch (typeof a) {
 				case 'string':
 					this._requiredScripts.push(a);
 					break;
 				case 'function':
-					this._requiredFunctions.push({fn: a});
+					this._requiredFunctions.push({ fn: a });
 					break;
 				case 'object':
 					this._requiredFunctions.push(a);
@@ -301,21 +270,19 @@ export class Parallel
 	 * @param env
 	 * @returns {TSDNPromise<U>|TSDNPromise}
 	 */
-	startNew<T, U> (data: T, task: (data: T) => U, env?: unknown): TSDNPromise<U>
-	{
+	startNew<T, U>(data: T, task: (data: T) => U, env?: unknown): TSDNPromise<U> {
 		const _ = this;
 		const maxConcurrency = this.ensureClampedMaxConcurrency();
 
 		const worker = maxConcurrency
 			? _._spawnWorker(task, extend(_.options.env, env as any || {}))
 			: null;
-		if(worker)
-		{
+		if (worker) {
 			return new WorkerPromise<U>(worker, data)
 				.finallyThis(() => workers.recycle(worker));
 		}
 
-		if(_.options.allowSynchronous)
+		if (_.options.allowSynchronous)
 			return this.startLocal(data, task);
 
 		throw new Error(maxConcurrency
@@ -330,16 +297,13 @@ export class Parallel
 	 * @param task
 	 * @returns {TSDNPromise<U>|TSDNPromise}
 	 */
-	startLocal<T, U> (data: T, task: (data: T) => U): TSDNPromise<U>
-	{
+	startLocal<T, U>(data: T, task: (data: T) => U): TSDNPromise<U> {
 		return new TSDNPromise<U>(
 			(resolve, reject) => {
-				try
-				{
+				try {
 					resolve(task(data));
 				}
-				catch(e)
-				{
+				catch (e) {
 					reject(e);
 				}
 			});
@@ -353,28 +317,24 @@ export class Parallel
 	 * @param env
 	 * @returns {PromiseCollection}
 	 */
-	pipe<T, U> (data: T[], task: (data: T) => U, env?: unknown): PromiseCollection<U>
-	{
+	pipe<T, U>(data: T[], task: (data: T) => U, env?: unknown): PromiseCollection<U> {
 
 		// The resultant promise collection will make an internal copy...
 		let result: TSDNPromise<U>[] | undefined;
 
-		if(data && data.length)
-		{
+		if (data && data.length) {
 			const len = data.length;
 			const taskString = task.toString();
 			const maxConcurrency = this.ensureClampedMaxConcurrency();
 			let error: any;
 			let i = 0;
-			for(let w = 0; !error && i<Math.min(len, maxConcurrency); w++)
-			{
+			for (let w = 0; !error && i < Math.min(len, maxConcurrency); w++) {
 				let worker: WorkerLike | null | undefined = maxConcurrency
 					? this._spawnWorker(taskString, env)
 					: null;
 
-				if(!worker)
-				{
-					if(!this.options.allowSynchronous)
+				if (!worker) {
+					if (!this.options.allowSynchronous)
 						throw new Error(maxConcurrency
 							? 'Workers do not exist and synchronous operation not allowed!'
 							: '\'maxConcurrency\' set to 0 but \'allowSynchronous\' is false.');
@@ -383,25 +343,21 @@ export class Parallel
 					return TSDNPromise.map(data, task);
 				}
 
-				if(!result)
-				{
+				if (!result) {
 					// There is a small risk that the consumer could call .resolve() which would result in a double resolution.
 					// But it's important to minimize the number of objects created.
 					result = data.map(() => new TSDNPromise<U>());
 				}
 
 				const next = () => {
-					if(error)
-					{
+					if (error) {
 						worker = workers.recycle(worker);
 					}
 
-					if(worker)
-					{
-						if(i<len)
-						{
+					if (worker) {
+						if (i < len) {
 							//noinspection JSReferencingMutableVariableFromClosure
-							const ii = i++, p = result![ii];
+							const ii = i++, p = result![ii]!;
 							const wp = new WorkerPromise<U>(worker, data[ii]);
 							//noinspection JSIgnoredPromiseFromCall
 							wp.thenSynchronous(
@@ -411,8 +367,7 @@ export class Parallel
 									next();
 								},
 								e => {
-									if(!error)
-									{
+									if (!error) {
 										error = e;
 										//noinspection JSIgnoredPromiseFromCall
 										p.reject(e);
@@ -422,8 +377,7 @@ export class Parallel
 								.finallyThis(() =>
 									wp.dispose());
 						}
-						else
-						{
+						else {
 							worker = workers.recycle(worker);
 						}
 					}
@@ -443,9 +397,8 @@ export class Parallel
 	 * @param env
 	 * @returns {ArrayPromise}
 	 */
-	map<T, U> (data: T[], task: (data: T) => U, env?: unknown): ArrayPromise<U>
-	{
-		if(!data || !data.length)
+	map<T, U>(data: T[], task: (data: T) => U, env?: unknown): ArrayPromise<U> {
+		if (!data || !data.length)
 			return ArrayPromise.fulfilled<U>([]);
 
 		// Would return the same result, but has extra overhead.
@@ -460,13 +413,11 @@ export class Parallel
 			const maxConcurrency = this.ensureClampedMaxConcurrency();
 			let error: any;
 			let i = 0, resolved = 0;
-			for(let w = 0; !error && i<Math.min(len, maxConcurrency); w++)
-			{
+			for (let w = 0; !error && i < Math.min(len, maxConcurrency); w++) {
 				let worker: WorkerLike | null | undefined = this._spawnWorker(taskString, env);
 
-				if(!worker)
-				{
-					if(!this.options.allowSynchronous)
+				if (!worker) {
+					if (!this.options.allowSynchronous)
 						throw new Error('Workers do not exist and synchronous operation not allowed!');
 
 					// Concurrency doesn't matter in a single thread... Just queue it all up.
@@ -475,15 +426,12 @@ export class Parallel
 				}
 
 				const next = () => {
-					if(error)
-					{
+					if (error) {
 						worker = workers.recycle(worker);
 					}
 
-					if(worker)
-					{
-						if(i<len)
-						{
+					if (worker) {
+						if (i < len) {
 							const ii = i++;
 							const wp = new WorkerPromise<U>(worker, data[ii]);
 							//noinspection JSIgnoredPromiseFromCall
@@ -493,8 +441,7 @@ export class Parallel
 									next();
 								},
 								e => {
-									if(!error)
-									{
+									if (!error) {
 										error = e;
 										reject(e);
 										worker = workers.recycle(worker);
@@ -502,14 +449,13 @@ export class Parallel
 								})
 								.thenThis(() => {
 									resolved++;
-									if(resolved>len) throw Error('Resolved count exceeds data length.');
-									if(resolved===len) resolve(result);
+									if (resolved > len) throw Error('Resolved count exceeds data length.');
+									if (resolved === len) resolve(result);
 								})
 								.finallyThis(() =>
 									wp.dispose());
 						}
-						else
-						{
+						else {
 							worker = workers.recycle(worker);
 						}
 					}
@@ -521,18 +467,15 @@ export class Parallel
 
 	}
 
-	protected _getWorkerSource (task: Function | string, env?: unknown): string
-	{
+	protected _getWorkerSource(task: Function | string, env?: unknown): string {
 		const scripts = this._requiredScripts, functions = this._requiredFunctions;
 		let preStr = '';
 
-		if(!isNodeJS && scripts.length)
-		{
+		if (!isNodeJS && scripts.length) {
 			preStr += 'importScripts("' + scripts.join('","') + '");\r\n';
 		}
 
-		for(const {name, fn} of functions)
-		{
+		for (const { name, fn } of functions) {
 			const source = fn.toString();
 			preStr += name
 				? `var ${name} = ${source};`
@@ -551,35 +494,31 @@ export class Parallel
 		);
 	}
 
-	protected _spawnWorker (task: Function | string, env?: unknown): WorkerLike | undefined
-	{
+	protected _spawnWorker(task: Function | string, env?: unknown): WorkerLike | undefined {
 		const src = this._getWorkerSource(task, env);
 
-		if(WorkerN===VOID0) return VOID0;
+		if (WorkerN === VOID0) return VOID0;
 		let worker = workers.tryGet(src);
-		if(worker) return worker;
+		if (worker) return worker;
 
 		const scripts = this._requiredScripts;
 		const evalPath = this.options.evalPath;
 
-		if(!evalPath)
-		{
-			if(isNodeJS)
+		if (!evalPath) {
+			if (isNodeJS)
 				throw new Error('Can\'t use NodeJS without eval.js!');
-			if(scripts.length)
+			if (scripts.length)
 				throw new Error('Can\'t use required scripts without eval.js!');
-			if(!URL)
+			if (!URL)
 				throw new Error('Can\'t create a blob URL in this browser!');
 		}
 
-		if(isNodeJS || scripts.length || !URL)
-		{
+		if (isNodeJS || scripts.length || !URL) {
 			worker = workers.getNew(src, evalPath!);
 			worker.postMessage(src);
 		}
-		else if(URL)
-		{
-			const blob = new Blob([src], {type: 'text/javascript'});
+		else if (URL) {
+			const blob = new Blob([src], { type: 'text/javascript' });
 			const url = URL.createObjectURL(blob);
 
 			worker = workers.getNew(src, url);
@@ -588,15 +527,13 @@ export class Parallel
 		return worker;
 	}
 
-	private ensureClampedMaxConcurrency (): number
-	{
-		let {maxConcurrency} = this.options;
-		if(maxConcurrency && maxConcurrency>MAX_WORKERS)
-		{
+	private ensureClampedMaxConcurrency(): number {
+		let { maxConcurrency } = this.options;
+		if (maxConcurrency && maxConcurrency > MAX_WORKERS) {
 			this.options.maxConcurrency = maxConcurrency = MAX_WORKERS;
 			console.warn(`More than ${MAX_WORKERS} workers can reach worker limits and cause unexpected results.  maxConcurrency reduced to ${MAX_WORKERS}.`);
 		}
-		return (maxConcurrency || maxConcurrency===0) ? maxConcurrency : MAX_WORKERS;
+		return (maxConcurrency || maxConcurrency === 0) ? maxConcurrency : MAX_WORKERS;
 	}
 }
 

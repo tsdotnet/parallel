@@ -1,13 +1,13 @@
 import Stopwatch from '@tsdotnet/stopwatch';
-import {assert} from 'chai';
+import {expect, it} from 'vitest';
 import Parallel from '../src/Parallel';
 
 it('should return the expected concatenation', () => {
 	return Parallel
 		.startNew('there', x => 'hello: ' + x)
 		.then(
-			result => assert.equal(result, 'hello: there'),
-			() => assert.ok(false)
+			result => expect(result).toBe('hello: there'),
+			() => expect.fail('Promise should not reject')
 		);
 });
 
@@ -46,12 +46,12 @@ function setupMap (maxCon: number): void
 			.maxConcurrency(maxCon)
 			.map(data, test)
 			.thenThis(
-				() => assert.ok(true),
-				() => assert.ok(false, 'mapping failed!'))
+				() => expect(true).toBeTruthy(),
+				() => expect.fail('mapping failed!'))
 			.reduce((p, c) => p + c, 0)
 			.then(
-				result => assert.equal(result, synchronousResult),
-				error => assert.ok(false, error)
+				result => expect(result).toBe(synchronousResult),
+				error => expect.fail(`Error: ${error}`)
 			)
 			// .finallyThis(
 			// 	()=>console.log(`\n(${maxCon}) Parallel map time (ms):`, sw.elapsedMilliseconds))
@@ -71,8 +71,8 @@ function setupPipe (maxCon: number): void
 			.pipe(data, test)
 			.reduce((p, c) => p + c, 0)
 			.then(
-				result => assert.equal(result, synchronousResult),
-				error => assert.ok(false, error)
+				result => expect(result).toBe(synchronousResult),
+				error => expect.fail(`Error: ${error}`)
 			)
 			// .finallyThis(
 			// 	()=>console.log(`\n(${maxCon}) Parallel pipe time (ms):`, sw.elapsedMilliseconds))
