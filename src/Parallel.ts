@@ -9,7 +9,7 @@ import { ArrayPromise, PromiseBase, PromiseCollection, TSDNPromise } from '@tsdo
 import { type WorkerLike, deferImmediate, environment, Worker as WorkerN } from '@tsdotnet/threading';
 
 const isNodeJS: boolean = environment.isNodeJS;
-/* eslint-disable @typescript-eslint/explicit-function-return-type, @typescript-eslint/ban-types */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 
 declare const navigator: any;
 declare const __dirname: string;
@@ -47,7 +47,6 @@ export interface ParallelOptions {
 const defaults: ParallelOptions = {
 	evalPath: isNodeJS ? __dirname + '/eval.js' : VOID0,
 	maxConcurrency: isNodeJS
-		// eslint-disable-next-line @typescript-eslint/no-var-requires
 		? require('os').cpus().length
 		: (navigator.hardwareConcurrency || 4),
 	allowSynchronous: true,
