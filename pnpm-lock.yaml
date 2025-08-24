@@ -31,14 +31,14 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
       '@tsdotnet/promises':
-        specifier: ^2.0.3
-        version: 2.0.3
+        specifier: ^2.0.4
+        version: 2.0.4
       '@tsdotnet/stopwatch':
-        specifier: ^2.0.1
-        version: 2.0.1
+        specifier: ^2.0.2
+        version: 2.0.2
       '@tsdotnet/threading':
-        specifier: ^2.0.1
-        version: 2.0.1
+        specifier: ^2.0.2
+        version: 2.0.2
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -544,8 +544,8 @@ packages:
     resolution: {integrity: sha512-LtoMMhxAlorcGhmFYI+LhPgbPZCkgP6ra1YL604EeF6U98pLlQ3iWIGMdWSC+vWmPBWBNgmDBAhnAobLROJmwg==}
     engines: {node: '>=18'}
 
-  '@tsdotnet/collection-base@2.1.4':
-    resolution: {integrity: sha512-HAa09y0ngoKr09UsrwpgZyBUgozqkBzVDrHiuPaRqsmuBGmJITI1Udnk84Y8RvTMYfLnjQ9LtVfCK95RGh0m0Q==}
+  '@tsdotnet/collection-base@2.1.5':
+    resolution: {integrity: sha512-X1GCK3YIVzuuwEwmgcGjqqD3HMlkFlm29JNZGsMVY47dZ9OQh1c3UflZm1dufKUHtm8X+uWDR6Q7MnOQ6gx7cw==}
 
   '@tsdotnet/common-interfaces@1.0.5':
     resolution: {integrity: sha512-O1sFLbaTpeAsudKSbe+IGf4vBpjG1zYYPTjhS1z2HT63M1R/izq5c9YndH+2ZQXIaXVBNWNJ7ml1OPhIadRZFg==}
@@ -565,29 +565,29 @@ packages:
   '@tsdotnet/lazy@2.0.0':
     resolution: {integrity: sha512-tzlhobcFpdiuvxvU1FDy+ElMvzDrSur78dQtsTI7GLJmttwo1IbREIZI7RHJlTRLUwG8NnqvtlN6Yk33Rx8eNQ==}
 
-  '@tsdotnet/linked-node-list@1.4.4':
-    resolution: {integrity: sha512-ZNL0fn4F1uNt+iun/ML+yPEwnOqQOOf7JI4ZIS3f/qM9J3C1UZeSmR39JhetjsLRtTVZjq1WK8+Cj4ylZdrQFQ==}
+  '@tsdotnet/linked-node-list@1.4.5':
+    resolution: {integrity: sha512-JIAn9tKn39AJIKwNX+tX3vbJMtZDW4m1NPSbw/gCQ/sMmIlAzBMpfnf0AvHNCRLJgzWOYvlFFtG48TM2NhPWhg==}
 
   '@tsdotnet/object-pool@2.0.0':
     resolution: {integrity: sha512-Rq5DcKSP0Uszh1betUs6qZYJlRDBGpxqQhZEaM+0Dxi0xhRubvikrcbvaunPVJgtx06Y9CDfNioAPUZzMYoGTg==}
 
-  '@tsdotnet/observable-base@2.0.1':
-    resolution: {integrity: sha512-amIgcwR+qmis7j/tPKOwsFgeqMR8z9RzaqWCrAeJdpeZpPrBcDmKhvlykvuiWZ7YDVRhushKVeCW1I8nL6q2xg==}
+  '@tsdotnet/observable-base@2.0.2':
+    resolution: {integrity: sha512-XMvZl0rjN/heAHDc7NN3RpC0n3vKvcite0TfSCHFPiTeZVHIhp1tKh5OrounG/qZ0lxaaBmBOsx1sZ+Uwss1Mw==}
 
-  '@tsdotnet/ordered-registry@1.1.4':
-    resolution: {integrity: sha512-W0u5IdYN3bATN+knrMPnaSBuYOafLx92QFJyUyOsVqzakfvpRY1+1gv1hkNhDNv0PeWXE0EJl2s8QtM2/LN47A==}
+  '@tsdotnet/ordered-registry@1.1.5':
+    resolution: {integrity: sha512-sJIisLuu2oNqPkXuSV5YFHQDOkJWoKNUevxnTz0XZOCYGhpq0yZoop81oNZr1zNp2xJXAd8wMVRD15qEB5lV4g==}
 
-  '@tsdotnet/promises@2.0.3':
-    resolution: {integrity: sha512-AoSd/Q+b7bN/CMljdCjqN7J8EdA84GVrs0l/Jdp1MOe1vb62RkzgleThbJ2kTSq+k7mBO4qZtVcsREnIAy63mA==}
+  '@tsdotnet/promises@2.0.4':
+    resolution: {integrity: sha512-Uc/7NnWL6Xpb3/MPNrIrU9qnLW+WmKVMfe15JQvvSqL4hdtZlSidIro/xZw9cYkTl7xums3PbUm9aYgQMrCB/Q==}
 
-  '@tsdotnet/queue@1.2.10':
-    resolution: {integrity: sha512-YKd0cNCr2bpWsK+YGZHGnZvguYT8fPQUQ1ktcZjct7ZzOWWntr+zro8WSTqY3b6p8gGr7eKtawp7xRb0+s15Tg==}
+  '@tsdotnet/queue@1.2.11':
+    resolution: {integrity: sha512-U3wVzr4R5Vt6GmDxf+mKg0tpOYfuy6lAnW67m6w7TLeaXG7CNmbmk60qDXRx5AyvLqCgeN5Uqp9C2y39Ie1LfA==}
 
-  '@tsdotnet/stopwatch@2.0.1':
-    resolution: {integrity: sha512-4M+rpkJBBkbXS+lrWij/VAaL3tUOKGo/V2g1iBW8Lum9teQzNQ0W/EU3ZCyah9usUiPqx1uKmeNuhlyqZadBlQ==}
+  '@tsdotnet/stopwatch@2.0.2':
+    resolution: {integrity: sha512-0DwUGwX2wuVAhZTr4nfy+GVihXNiDu3fOpbM4eJq8pxWvQXtExfRJwXf55ClZcVNFzjX0A+/uY3JRoUVhZTVcA==}
 
-  '@tsdotnet/threading@2.0.1':
-    resolution: {integrity: sha512-vzyTV6CVVRVoD16PF88bzyQG67XA/99rGE/LGgcNpiUH9cs/Vl38l5lP17Rw+YQ/ROQlS6RJ+8cyFQDTbjbnbg==}
+  '@tsdotnet/threading@2.0.2':
+    resolution: {integrity: sha512-5PAyedzCFKoEJXAT/OMe4O4ymVeY0B8/LmH1XRkToyL1iBc0RjWFO0Mnk92slELG3fhfuoqvXcp1In/Vcp/hJg==}
 
   '@tsdotnet/type@1.2.5':
     resolution: {integrity: sha512-A7W23hIAVt4E3JWIU9TmczXY2RlgOr7zWC8IwX8e56Sb4+vo7+4Jq2tYSpmODjllfH81ELJKCI0D8cLTbI/O3w==}
@@ -2001,7 +2001,7 @@ snapshots:
 
   '@sindresorhus/merge-streams@2.3.0': {}
 
-  '@tsdotnet/collection-base@2.1.4':
+  '@tsdotnet/collection-base@2.1.5':
     dependencies:
       '@tsdotnet/common-interfaces': 1.0.5
       '@tsdotnet/compare': 1.7.1
@@ -2037,9 +2037,9 @@ snapshots:
       '@tsdotnet/disposable': 2.0.1
       tslib: 2.8.1
 
-  '@tsdotnet/linked-node-list@1.4.4':
+  '@tsdotnet/linked-node-list@1.4.5':
     dependencies:
-      '@tsdotnet/collection-base': 2.1.4
+      '@tsdotnet/collection-base': 2.1.5
       '@tsdotnet/common-interfaces': 1.0.5
       '@tsdotnet/exceptions': 1.2.4
       tslib: 2.8.1
@@ -2050,56 +2050,56 @@ snapshots:
       '@tsdotnet/exceptions': 1.2.4
       tslib: 2.8.1
 
-  '@tsdotnet/observable-base@2.0.1':
+  '@tsdotnet/observable-base@2.0.2':
     dependencies:
-      '@tsdotnet/collection-base': 2.1.4
+      '@tsdotnet/collection-base': 2.1.5
       '@tsdotnet/common-interfaces': 1.0.5
       '@tsdotnet/disposable': 2.0.1
       '@tsdotnet/exceptions': 1.2.4
-      '@tsdotnet/linked-node-list': 1.4.4
-      '@tsdotnet/ordered-registry': 1.1.4
+      '@tsdotnet/linked-node-list': 1.4.5
+      '@tsdotnet/ordered-registry': 1.1.5
       tslib: 2.8.1
 
-  '@tsdotnet/ordered-registry@1.1.4':
+  '@tsdotnet/ordered-registry@1.1.5':
     dependencies:
-      '@tsdotnet/collection-base': 2.1.4
+      '@tsdotnet/collection-base': 2.1.5
       '@tsdotnet/common-interfaces': 1.0.5
       '@tsdotnet/compare': 1.7.1
       '@tsdotnet/exceptions': 1.2.4
-      '@tsdotnet/linked-node-list': 1.4.4
+      '@tsdotnet/linked-node-list': 1.4.5
       tslib: 2.8.1
 
-  '@tsdotnet/promises@2.0.3':
+  '@tsdotnet/promises@2.0.4':
     dependencies:
       '@tsdotnet/common-interfaces': 1.0.5
       '@tsdotnet/compare': 1.7.1
       '@tsdotnet/disposable': 2.0.1
       '@tsdotnet/exceptions': 1.2.4
       '@tsdotnet/object-pool': 2.0.0
-      '@tsdotnet/threading': 2.0.1
+      '@tsdotnet/threading': 2.0.2
       tslib: 2.8.1
 
-  '@tsdotnet/queue@1.2.10':
+  '@tsdotnet/queue@1.2.11':
     dependencies:
-      '@tsdotnet/collection-base': 2.1.4
+      '@tsdotnet/collection-base': 2.1.5
       '@tsdotnet/exceptions': 1.2.4
       tslib: 2.8.1
 
-  '@tsdotnet/stopwatch@2.0.1':
+  '@tsdotnet/stopwatch@2.0.2':
     dependencies:
       '@tsdotnet/date-time': 2.0.0
       tslib: 2.8.1
 
-  '@tsdotnet/threading@2.0.1':
+  '@tsdotnet/threading@2.0.2':
     dependencies:
       '@tsdotnet/common-interfaces': 1.0.5
       '@tsdotnet/disposable': 2.0.1
       '@tsdotnet/exceptions': 1.2.4
       '@tsdotnet/lazy': 2.0.0
-      '@tsdotnet/linked-node-list': 1.4.4
+      '@tsdotnet/linked-node-list': 1.4.5
       '@tsdotnet/object-pool': 2.0.0
-      '@tsdotnet/observable-base': 2.0.1
-      '@tsdotnet/queue': 1.2.10
+      '@tsdotnet/observable-base': 2.0.2
+      '@tsdotnet/queue': 1.2.11
       tslib: 2.8.1
 
   '@tsdotnet/type@1.2.5':
