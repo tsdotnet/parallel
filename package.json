@@ -63,9 +63,9 @@
   "dependencies": {
     "@tsdotnet/disposable": "^2.0.3",
     "@tsdotnet/object-pool": "^2.0.5",
-    "@tsdotnet/promises": "^2.0.11",
-    "@tsdotnet/stopwatch": "^2.0.8",
-    "@tsdotnet/threading": "^2.0.13",
+    "@tsdotnet/promises": "^2.0.12",
+    "@tsdotnet/stopwatch": "^2.0.9",
+    "@tsdotnet/threading": "^2.0.14",
     "tslib": "^2.8.1"
   },
   "pnpm": {
