@@ -1,7 +1,6 @@
 # ![alt text](https://avatars1.githubusercontent.com/u/64487547?s=30 "tsdotnet") tsdotnet / parallel
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/tsdotnet/parallel/blob/master/LICENSE)
-![npm-publish](https://github.com/tsdotnet/parallel/workflows/npm-publish/badge.svg)
 [![npm version](https://img.shields.io/npm/v/@tsdotnet/parallel.svg?style=flat-square)](https://www.npmjs.com/package/@tsdotnet/parallel)
 
 A utility for automatically partitioning tasks (promises) and executing them in parallel using separate processes or web workers.
