@@ -61,8 +61,8 @@
     "vitest": "^4.1.0"
   },
   "dependencies": {
-    "@tsdotnet/disposable": "^2.0.2",
-    "@tsdotnet/object-pool": "^2.0.4",
+    "@tsdotnet/disposable": "^2.0.3",
+    "@tsdotnet/object-pool": "^2.0.5",
     "@tsdotnet/promises": "^2.0.11",
     "@tsdotnet/stopwatch": "^2.0.8",
     "@tsdotnet/threading": "^2.0.13",
