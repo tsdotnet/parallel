@@ -21,7 +21,8 @@
   ],
   "scripts": {
     "clean": "rimraf dist",
-    "build:types": "cpy \"src/**/*.d.ts\" dist/types --parents && tsc -p tsconfig.types.json",
+    "copy:dts": "cpy \"src/**/*.d.ts\" dist/types --parents || echo No .d.ts files to copy",
+    "build:types": "pnpm copy:dts && tsc -p tsconfig.types.json",
     "build:esm": "rollup -c rollup.config.js",
     "build:cjs": "tsc -p tsconfig.cjs.json",
     "build": "pnpm clean && pnpm build:types && pnpm build:esm && pnpm build:cjs && pnpm typecheck:tests",
@@ -56,12 +57,12 @@
     "rollup": "^4.59.0",
     "typedoc": "^0.28.17",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.57.0",
+    "typescript-eslint": "^8.57.1",
     "vitest": "^4.1.0"
   },
   "dependencies": {
-    "@tsdotnet/disposable": "^2.0.1",
-    "@tsdotnet/object-pool": "^2.0.2",
+    "@tsdotnet/disposable": "^2.0.2",
+    "@tsdotnet/object-pool": "^2.0.4",
     "@tsdotnet/promises": "^2.0.11",
     "@tsdotnet/stopwatch": "^2.0.8",
     "@tsdotnet/threading": "^2.0.13",

@@ -1,6 +1,6 @@
 import Stopwatch from '@tsdotnet/stopwatch';
 import {expect, it} from 'vitest';
-import Parallel from '../src/Parallel';
+import Parallel from '../src/Parallel.js';
 
 it('should return the expected concatenation', () => {
 	return Parallel
