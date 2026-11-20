@@ -12,7 +12,7 @@
 <h1>Interface ParallelOptions</h1></div>
 <div class="tsd-signature"><span class="tsd-signature-keyword">interface</span> <span class="tsd-kind-interface">ParallelOptions</span> <span class="tsd-signature-symbol">{</span><br/>    <a class="tsd-kind-property" href="#allowsynchronous">allowSynchronous</a><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#env">env</a><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#envnamespace">envNamespace</a><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#evalpath">evalPath</a><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#maxconcurrency">maxConcurrency</a><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">;</span><br/><span class="tsd-signature-symbol">}</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in Parallel.ts:32</li></ul></aside>
+<li>Defined in <a href="https://github.com/tsdotnet/parallel/blob/aa96f2088f773eeda5b29d36fe1f58683222955b/src/Parallel.ts#L32">Parallel.ts:32</a></li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-accordion" open><summary class="tsd-accordion-summary tsd-index-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
@@ -35,31 +35,31 @@
 <div class="tsd-comment tsd-typography"><p>If WebWorkers are not available, whether or not to fall back to synchronous processing using setTimeout.  Defaults to true.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in Parallel.ts:46</li></ul></aside></section>
+<li>Defined in <a href="https://github.com/tsdotnet/parallel/blob/aa96f2088f773eeda5b29d36fe1f58683222955b/src/Parallel.ts#L46">Parallel.ts:46</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="env"><code class="tsd-tag">Optional</code><span>env</span><a href="#env" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">env</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">any</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in Parallel.ts:48</li></ul></aside></section>
+<li>Defined in <a href="https://github.com/tsdotnet/parallel/blob/aa96f2088f773eeda5b29d36fe1f58683222955b/src/Parallel.ts#L48">Parallel.ts:48</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="envnamespace"><code class="tsd-tag">Optional</code><span>env<wbr/>Namespace</span><a href="#envnamespace" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">envNamespace</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in Parallel.ts:49</li></ul></aside></section>
+<li>Defined in <a href="https://github.com/tsdotnet/parallel/blob/aa96f2088f773eeda5b29d36fe1f58683222955b/src/Parallel.ts#L49">Parallel.ts:49</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="evalpath"><code class="tsd-tag">Optional</code><span>eval<wbr/>Path</span><a href="#evalpath" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">evalPath</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span></div>
 <div class="tsd-comment tsd-typography"><p>This is the path to the file eval.js.  This is required when running in node, and required for some browsers (IE 10) in order to work around cross-domain restrictions for web workers.  Defaults to the same location as parallel.js in node environments, and null in the browser.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in Parallel.ts:36</li></ul></aside></section>
+<li>Defined in <a href="https://github.com/tsdotnet/parallel/blob/aa96f2088f773eeda5b29d36fe1f58683222955b/src/Parallel.ts#L36">Parallel.ts:36</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="maxconcurrency"><code class="tsd-tag">Optional</code><span>max<wbr/>Concurrency</span><a href="#maxconcurrency" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">maxConcurrency</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">number</span></div>
 <div class="tsd-comment tsd-typography"><p>The maximum number of permitted worker threads.  This will default to 4, or the number of CPUs on your computer if you're running node.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in Parallel.ts:41</li></ul></aside></section></section></details></div>
+<li>Defined in <a href="https://github.com/tsdotnet/parallel/blob/aa96f2088f773eeda5b29d36fe1f58683222955b/src/Parallel.ts#L41">Parallel.ts:41</a></li></ul></aside></section></section></details></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
