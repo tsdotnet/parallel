@@ -14,15 +14,26 @@ const isNodeJS = threading_1.environment.isNodeJS;
 const MAX_WORKERS = 16, VOID0 = void 0, URL = typeof self !== 'undefined'
     ? (self.URL ? self.URL : self.webkitURL)
     : null, _supports = isNodeJS || !!self.Worker;
-const defaults = {
-    evalPath: isNodeJS ? __dirname + '/eval.js' : VOID0,
-    maxConcurrency: isNodeJS
-        ? require('os').cpus().length
-        : (navigator.hardwareConcurrency || 4),
-    allowSynchronous: true,
-    env: {},
-    envNamespace: 'env'
-};
+function getEvalPath() {
+    if (typeof __dirname === 'string')
+        return __dirname + '/eval.js';
+    if (typeof __moduleUrl === 'string') {
+        const url = new globalThis.URL('./eval.js', __moduleUrl);
+        return process.getBuiltinModule('node:url').fileURLToPath(url);
+    }
+    throw new Error('Unable to locate eval.js. Please supply the evalPath option.');
+}
+function getDefaults() {
+    return {
+        evalPath: isNodeJS ? getEvalPath() : VOID0,
+        maxConcurrency: isNodeJS
+            ? process.getBuiltinModule('node:os').cpus().length
+            : (navigator.hardwareConcurrency || 4),
+        allowSynchronous: true,
+        env: {},
+        envNamespace: 'env'
+    };
+}
 function extend(from, to) {
     if (!to)
         to = {};
@@ -97,7 +108,7 @@ var workers;
 })(workers || (workers = {}));
 class Parallel {
     constructor(options) {
-        this.options = extend(defaults, options);
+        this.options = extend(getDefaults(), options);
         this._requiredScripts = [];
         this._requiredFunctions = [];
         this.ensureClampedMaxConcurrency();

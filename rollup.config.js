@@ -14,7 +14,10 @@ export default defineConfig([
       preserveModules: true,
       preserveModulesRoot: 'src',
       entryFileNames: '[name].js',
-      sourcemap: true
+      sourcemap: true,
+      // Parallel.ts needs its own location to find eval.js, but `import.meta` can't be written in
+      // the source because the CommonJS (tsc) build rejects it. See __moduleUrl in Parallel.ts.
+      banner: 'const __moduleUrl = import.meta.url;'
     },
     external: [
       /^node:/,

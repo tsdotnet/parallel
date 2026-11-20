@@ -12,7 +12,13 @@ const isNodeJS: boolean = environment.isNodeJS;
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 
 declare const navigator: any;
-declare const __dirname: string;
+/** Defined in the CommonJS build (and by vitest). Absent in native ES modules. */
+declare const __dirname: string | undefined;
+/**
+ * The URL of this module. Absent in the CommonJS build (tsc rejects `import.meta` there),
+ * so the rollup ESM build injects it with a banner (see rollup.config.js).
+ */
+declare const __moduleUrl: string | undefined;
 
 //noinspection JSUnusedAssignment
 const
@@ -43,16 +49,36 @@ export interface ParallelOptions {
 	envNamespace?: string;
 }
 
-//noinspection JSUnusedAssignment
-const defaults: ParallelOptions = {
-	evalPath: isNodeJS ? __dirname + '/eval.js' : VOID0,
-	maxConcurrency: isNodeJS
-		? require('os').cpus().length
-		: (navigator.hardwareConcurrency || 4),
-	allowSynchronous: true,
-	env: {},
-	envNamespace: 'env'
-};
+/**
+ * Resolves the path of the worker script (eval.js) that sits next to this module.
+ * Evaluated lazily so that merely importing this module never touches Node-only APIs.
+ */
+function getEvalPath(): string {
+	// CommonJS build.
+	if (typeof __dirname === 'string') return __dirname + '/eval.js';
+	// ES module build.
+	if (typeof __moduleUrl === 'string') {
+		// (The module-level `URL` constant is nullable and shadows the global.)
+		const url = new globalThis.URL('./eval.js', __moduleUrl);
+		return process.getBuiltinModule('node:url').fileURLToPath(url);
+	}
+	throw new Error('Unable to locate eval.js. Please supply the evalPath option.');
+}
+
+/**
+ * Builds the default options on demand (neither `require` nor `__dirname` exist in ES modules).
+ */
+function getDefaults(): ParallelOptions {
+	return {
+		evalPath: isNodeJS ? getEvalPath() : VOID0,
+		maxConcurrency: isNodeJS
+			? process.getBuiltinModule('node:os').cpus().length
+			: (navigator.hardwareConcurrency || 4),
+		allowSynchronous: true,
+		env: {},
+		envNamespace: 'env'
+	};
+}
 
 type Lookup<T> = { [key: string]: T };
 
@@ -157,7 +183,7 @@ export class Parallel {
 	protected readonly _requiredFunctions: { name?: string; fn: Function }[];
 
 	constructor(options?: ParallelOptions) {
-		this.options = extend(defaults, options);
+		this.options = extend(getDefaults(), options);
 		this._requiredScripts = [];
 		this._requiredFunctions = [];
 

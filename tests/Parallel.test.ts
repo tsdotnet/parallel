@@ -1,4 +1,5 @@
 import Stopwatch from '@tsdotnet/stopwatch';
+import {existsSync} from 'node:fs';
 import {expect, it} from 'vitest';
 import Parallel from '../src/Parallel.js';
 
@@ -91,3 +92,10 @@ setupPipe(2);
 setupMap(1);
 setupMap(2);
 // setupMap(3);
+
+it('should lazily resolve an existing eval.js and the CPU count in Node', () => {
+	const {evalPath, maxConcurrency} = new Parallel().options;
+	expect(evalPath).toMatch(/eval.js$/);
+	expect(existsSync(evalPath!)).toBe(true);
+	expect(maxConcurrency).toBeGreaterThan(0);
+});
