@@ -1,16 +1,31 @@
-# ![alt text](https://avatars1.githubusercontent.com/u/64487547?s=30 "tsdotnet") tsdotnet / parallel
+![@tsdotnet/parallel: Spread the work, gather it. Run tasks in parallel workers.](https://cdn.jsdelivr.net/gh/tsdotnet/parallel@master/assets/banner.svg)
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/tsdotnet/parallel/blob/master/LICENSE)
 [![npm version](https://img.shields.io/npm/v/@tsdotnet/parallel.svg?style=flat-square)](https://www.npmjs.com/package/@tsdotnet/parallel)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/tsdotnet/parallel/blob/master/LICENSE)
 
-A utility for automatically partitioning tasks (promises) and executing them in parallel using separate processes or web workers.
+Run functions over data in parallel worker threads, in Node.js and the browser, with a synchronous fallback.
+
+## Install
+
+```sh
+npm install @tsdotnet/parallel
+```
+
+## Usage
+
+```ts
+import { Parallel } from '@tsdotnet/parallel';
+
+const squares = Parallel.map([1, 2, 3, 4], n => n * n);
+squares.then(values => console.log(values)); // [1, 4, 9, 16]
+```
+
+Tasks run in worker threads, so each task function must be self-contained. Pass shared values with `env` and helper code with `require`.
+
+## Use it from
+
+ESM (`import { Parallel } from '@tsdotnet/parallel';`) or CommonJS (`const { Parallel } = require('@tsdotnet/parallel');`). No `<script>` (UMD) build: use it with a bundler or Node.js.
 
 ## Docs
 
 [tsdotnet.github.io/parallel](https://tsdotnet.github.io/parallel/)
-
-## Demo
-
-[**Genetic Algorithm Parallelized (multi-process) in NodeJS & Browser!**](https://youtu.be/gy-cQuEMfqs)
-
-[![Genetic Algorithm Parallelized (multi-process) in NodeJS & Browser!](https://i.ytimg.com/vi/gy-cQuEMfqs/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLDBsZWDiGqlR0F70gDJwmPIB5W57w)](https://youtu.be/gy-cQuEMfqs)
