@@ -84,11 +84,11 @@
     "vitest": "^5.1.1"
   },
   "dependencies": {
-    "@tsdotnet/disposable": "^2.0.3",
-    "@tsdotnet/object-pool": "^2.0.5",
-    "@tsdotnet/promises": "^2.0.12",
-    "@tsdotnet/stopwatch": "^2.0.9",
-    "@tsdotnet/threading": "^2.0.14",
+    "@tsdotnet/disposable": "^2.1.1",
+    "@tsdotnet/object-pool": "^2.1.1",
+    "@tsdotnet/promises": "^2.1.1",
+    "@tsdotnet/stopwatch": "^2.1.1",
+    "@tsdotnet/threading": "^2.1.1",
     "tslib": "^2.9.1"
   },
   "pnpm": {
