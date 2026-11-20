@@ -1,4 +1,4 @@
-![@tsdotnet/parallel: Spread the work, gather it. Run tasks in parallel workers.](https://cdn.jsdelivr.net/gh/tsdotnet/parallel@master/assets/banner.svg)
+<a href="https://tsdotnet.github.io/parallel/"><img src="https://cdn.jsdelivr.net/gh/tsdotnet/parallel@master/assets/banner.svg" alt="@tsdotnet/parallel: Spread the work, gather it. Run tasks in parallel workers."></a>
 
 [![npm version](https://img.shields.io/npm/v/@tsdotnet/parallel.svg?style=flat-square)](https://www.npmjs.com/package/@tsdotnet/parallel)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/tsdotnet/parallel/blob/master/LICENSE)
